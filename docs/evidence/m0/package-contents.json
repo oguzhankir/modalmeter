@@ -1,0 +1,38 @@
+{
+  "modalmeter-0.0.0.dev0-py3-none-any.whl": {
+    "bytes": 5453,
+    "sha256": "ac8d8ca1e771e3a7e7363b98386427f8d01d072ff9816f7a7e6a5620c828301e",
+    "members": [
+      "modalmeter/__init__.py",
+      "modalmeter/cli.py",
+      "modalmeter/py.typed",
+      "modalmeter/schemas.py",
+      "modalmeter-0.0.0.dev0.dist-info/METADATA",
+      "modalmeter-0.0.0.dev0.dist-info/WHEEL",
+      "modalmeter-0.0.0.dev0.dist-info/entry_points.txt",
+      "modalmeter-0.0.0.dev0.dist-info/licenses/LICENSE",
+      "modalmeter-0.0.0.dev0.dist-info/RECORD"
+    ]
+  },
+  "modalmeter-0.0.0.dev0.tar.gz": {
+    "bytes": 55371,
+    "sha256": "bb4daf3260239c39aa4c2aa89911d61e86c4bd8991a897a91fc30aeb59147344",
+    "members": [
+      "modalmeter-0.0.0.dev0/CHANGELOG.md",
+      "modalmeter-0.0.0.dev0/uv.lock",
+      "modalmeter-0.0.0.dev0/scripts/package_smoke.py",
+      "modalmeter-0.0.0.dev0/src/modalmeter/__init__.py",
+      "modalmeter-0.0.0.dev0/src/modalmeter/cli.py",
+      "modalmeter-0.0.0.dev0/src/modalmeter/py.typed",
+      "modalmeter-0.0.0.dev0/src/modalmeter/schemas.py",
+      "modalmeter-0.0.0.dev0/tests/test_cli.py",
+      "modalmeter-0.0.0.dev0/tests/test_schemas.py",
+      "modalmeter-0.0.0.dev0/tests/fixtures/evidence-v1.json",
+      "modalmeter-0.0.0.dev0/.gitignore",
+      "modalmeter-0.0.0.dev0/LICENSE",
+      "modalmeter-0.0.0.dev0/README.md",
+      "modalmeter-0.0.0.dev0/pyproject.toml",
+      "modalmeter-0.0.0.dev0/PKG-INFO"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+ARM64 driver: /opt/homebrew/bin/python3.12
+UV_PYTHON=/usr/local/bin/python3.11 UV_PROJECT_ENVIRONMENT=.venv-py311
+UV_CACHE_DIR=/private/tmp/modalmeter-uv-cache
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 NO_COLOR=1 TERM=dumb
+
+$ arch -arm64 uv sync --locked
+Resolved 53 packages in 15ms
+Checked 23 packages in 6ms
+
+exit_code=0
+
+$ arch -arm64 uv run --locked python -c import platform; print(platform.python_version(), platform.machine()); assert platform.machine() == "arm64"
+3.11.5 arm64
+
+exit_code=0
+
+$ arch -arm64 uv run --locked ruff format --check .
+8 files already formatted
+
+exit_code=0
+
+$ arch -arm64 uv run --locked ruff check .
+All checks passed!
+
+exit_code=0
+
+$ arch -arm64 uv run --locked mypy
+Traceback (most recent call last):
+  File "/Users/oguz/Desktop/modalmeter/.venv-py311/bin/mypy", line 4, in <module>
+    from mypy.__main__ import console_entry
+ImportError: dlopen(/Users/oguz/Desktop/modalmeter/.venv-py311/lib/python3.11/site-packages/mypy/__init__.cpython-311-darwin.so, 0x0002): tried: '/Users/oguz/Desktop/modalmeter/.venv-py311/lib/python3.11/site-packages/mypy/__init__.cpython-311-darwin.so' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e' or 'arm64e.v1' or 'arm64' or 'arm64')), '/System/Volumes/Preboot/Cryptexes/OS/Users/oguz/Desktop/modalmeter/.venv-py311/lib/python3.11/site-packages/mypy/__init__.cpython-311-darwin.so' (no such file), '/Users/oguz/Desktop/modalmeter/.venv-py311/lib/python3.11/site-packages/mypy/__init__.cpython-311-darwin.so' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e' or 'arm64e.v1' or 'arm64' or 'arm64'))
+
+exit_code=1
+

@@ -1,0 +1,31 @@
+$ uv run --locked ruff format --check .
+Using CPython 3.12.12 interpreter at: /opt/miniconda3/bin/python3
+Removed virtual environment at: .venv-py311
+Creating virtual environment at: .venv-py311
+WARN Retry attempt #0. Sleeping 1.279631917s before the next attempt
+WARN Retry attempt #0. Sleeping 1.191480316s before the next attempt
+WARN Retry attempt #0. Sleeping 1.22825602s before the next attempt
+WARN Retry attempt #0. Sleeping 1.794272276s before the next attempt
+WARN Retry attempt #1. Sleeping 1.757800819s before the next attempt
+WARN Retry attempt #1. Sleeping 1.451092685s before the next attempt
+WARN Retry attempt #1. Sleeping 2.264529086s before the next attempt
+WARN Retry attempt #1. Sleeping 3.103982489s before the next attempt
+WARN Retry attempt #2. Sleeping 4.064573116s before the next attempt
+WARN Retry attempt #2. Sleeping 2.281987391s before the next attempt
+WARN Retry attempt #2. Sleeping 7.889775926s before the next attempt
+WARN Retry attempt #2. Sleeping 6.45549543s before the next attempt
+  × Failed to download `librt==0.15.0`
+  ├─▶ Request failed after 3 retries in 5.2s
+  ├─▶ Failed to fetch:
+  │   `https://files.pythonhosted.org/packages/ba/39/99c25030e782bdfb7a21be8c05254806a2e4bbb05c8d50c2a2130acbfa05/librt-0.15.0-cp312-cp312-macosx_10_13_x86_64.whl`
+  ├─▶ error sending request for url
+  │   (https://files.pythonhosted.org/packages/ba/39/99c25030e782bdfb7a21be8c05254806a2e4bbb05c8d50c2a2130acbfa05/librt-0.15.0-cp312-cp312-macosx_10_13_x86_64.whl)
+  ├─▶ client error (Connect)
+  ├─▶ dns error
+  ╰─▶ failed to lookup address information: nodename nor servname provided, or
+      not known
+  help: `librt` (v0.15.0) was included because `modalmeter:dev` depends on
+        `mypy` (v1.19.1) which depends on `librt`
+
+exit_code=1
+

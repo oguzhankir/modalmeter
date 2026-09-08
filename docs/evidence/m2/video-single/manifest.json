@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "media_manifest",
+  "kind": "video",
+  "sha256": "2047e73b9f8eb5577687b29b95fcf27fc3a372d9b0cd56e49b96e04804553a2a",
+  "display_name": "video",
+  "source_bytes": 4593,
+  "source_width": 96,
+  "source_height": 64,
+  "oriented_width": 96,
+  "oriented_height": 64,
+  "source_mode": null,
+  "transforms": [
+    "PyAV decoded selected frames to RGB24; no decoder resize."
+  ],
+  "source_frame_count": 1,
+  "reported_frame_count": null,
+  "source_duration_seconds": null,
+  "source_duration_reason": "Video stream duration metadata is unavailable.",
+  "average_fps": 2.0,
+  "fps_reason": null,
+  "selected_frames": [
+    {
+      "ordinal": 0,
+      "pts": 0,
+      "time_base_numerator": 1,
+      "time_base_denominator": 1000,
+      "timestamp_seconds": 0.0,
+      "timestamp_unavailable_reason": null,
+      "processor_timestamp_seconds": 0.0
+    }
+  ],
+  "requested_frames": 1,
+  "selected_frame_count": 1,
+  "processed_frame_count": 2,
+  "processed_frames": [
+    {
+      "position": 0,
+      "selected_position": 0,
+      "source_ordinal": 0,
+      "duplicated": false,
+      "duplication_reason": null
+    },
+    {
+      "position": 1,
+      "selected_position": 0,
+      "source_ordinal": 0,
+      "duplicated": true,
+      "duplication_reason": "single_frame_adapter_padding_before_native_resize"
+    }
+  ],
+  "sampling_policy": "uniform",
+  "sampling_method": "Inclusive rational PTS targets, nearest frame; ties choose earlier PTS then ordinal; de-duplicate targets; one target selects the first frame.",
+  "timestamp_policy": "Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.",
+  "warnings": [
+    "Decoder runtime is checked between frames; native codec calls cannot be interrupted.",
+    "Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.",
+    "Container frame count is unavailable; source_frame_count is the complete decoded count.",
+    "One selected frame is replicated before native resize; selected=1, processed=2."
+  ],
+  "decoder_versions": {
+    "PyAV": "16.1.0",
+    "FFmpeg libavutil": "60.8.100",
+    "FFmpeg libavcodec": "62.11.100",
+    "FFmpeg libavformat": "62.3.100",
+    "FFmpeg libavdevice": "62.1.100",
+    "FFmpeg libavfilter": "11.4.100",
+    "FFmpeg libswscale": "9.1.100",
+    "FFmpeg libswresample": "6.1.100"
+  },
+  "privacy_mode": "media_included"
+}

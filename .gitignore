@@ -1,0 +1,27 @@
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+.DS_Store
+.env
+.env.*
+!.env.example
+.cache/
+.uv-cache/
+.hf-cache/
+models/
+*.safetensors
+*.pt
+*.pth
+private-media/
+runs/
+reports/
+traces/
+# Curated tests/fixtures and reviewed docs/evidence remain trackable.

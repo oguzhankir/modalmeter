@@ -1,0 +1,76 @@
+Driver: /opt/homebrew/bin/python3.12
+PATH prefix: /private/tmp/modalmeter-uv-tool/bin
+UV_PYTHON=/opt/homebrew/bin/python3.12 UV_PROJECT_ENVIRONMENT=.venv
+UV_CACHE_DIR=/private/tmp/modalmeter-uv-cache
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 NO_COLOR=1 TERM=dumb
+
+$ uv --version
+uv 0.11.7 (9d177269e 2026-04-15 aarch64-apple-darwin)
+
+exit_code=0
+
+$ uv run --locked python -c import platform; print(platform.python_version(), platform.machine()); assert platform.machine() == "arm64"
+3.12.11 arm64
+
+exit_code=0
+
+$ uv run --locked ruff format --check .
+8 files already formatted
+
+exit_code=0
+
+$ uv run --locked ruff check .
+All checks passed!
+
+exit_code=0
+
+$ uv run --locked mypy
+Success: no issues found in 6 source files
+
+exit_code=0
+
+$ uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.11, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/oguz/Desktop/modalmeter
+configfile: pyproject.toml
+testpaths: tests
+collected 21 items
+
+tests/test_cli.py .........                                              [ 42%]
+tests/test_schemas.py ............                                       [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/typer/__init__.py:24
+  /Users/oguz/Desktop/modalmeter/.venv/lib/python3.12/site-packages/typer/__init__.py:24: DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_binary_stream as get_binary_stream
+
+.venv/lib/python3.12/site-packages/typer/__init__.py:25
+  /Users/oguz/Desktop/modalmeter/.venv/lib/python3.12/site-packages/typer/__init__.py:25: DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_text_stream as get_text_stream
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 21 passed, 2 warnings in 0.30s ========================
+
+exit_code=0
+
+$ uv run --locked modalmeter --help
+                                                                                
+ Usage: modalmeter [OPTIONS] [COMMAND] [ARGS]...                                
+                                                                                
+ ModalMeter: multimodal profiling foundations. Inspection is not implemented    
+ yet.                                                                           
+                                                                                
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --version          Show the version and exit.                                │
+│ --help             Show this message and exit.                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+exit_code=0
+
+$ uv run --locked modalmeter --version
+modalmeter 0.0.0.dev0
+
+exit_code=0
+

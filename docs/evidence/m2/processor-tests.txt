@@ -1,0 +1,60 @@
+M2 video acceptance evidence from the shared M1/M2 processor suite.
+Recorded 2026-09-08, macOS ARM64, .venv-spike Python 3.12.11.
+Processor artifact SHA-256 values were independently checked by the suite.
+
+Command (repository root):
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false MODALMETER_TEST_PROCESSOR_DIR=/private/tmp/modalmeter-m0-processor .venv-spike/bin/python -m pytest -m processor tests/test_processor.py -q
+
+Actual final pytest summary:
+19 passed in 13.17s
+Process exit code: 0
+
+This was the same shared suite invocation recorded under M1; do not count it
+twice. No network connections, model weights, inference, GPU, or serving
+endpoint was used. It is CPU processor evidence, not backend parity.
+
+M2 cases include:
+- Uniform selection of 2, 3 and 6 frames compared with independently executed
+  native reference processing, actual token IDs, grids, masks and patch rows.
+- An odd selection records native final-frame duplication and prompt metadata.
+- Model-default staged selection matches the unmodified native processor
+  sampling the complete video at a noninteger nominal FPS of 2.5.
+- Native preprocessing executes once; model-default native selection executes
+  once and uniform mode performs no hidden native selection.
+- The native single-frame resize rejects the input; an explicitly recorded
+  pre-resize duplicate matches independently repaired reference input.
+- Irregular PTS with a 2-second origin retain exact rational decoded times;
+  native ordinal/FPS prompt labels are separately compared and not called PTS.
+- Repeated PTS 0, 0, 0.5, 0.5 preserve decoded ordinals and report requested
+  uniform budget 4 versus effective selected count 2.
+- Authored fixture RGB hashes and exact rational PTS match actual PyAV decode.
+
+Default unit media tests separately cover corrupt inputs, limits and missing
+metadata. Their results are not included in the 19-test invocation above.
+Later expanded-suite results, if present, supersede this count without changing
+what this original run actually executed.
+
+Additional fixed-total-pixel-budget acceptance:
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false MODALMETER_TEST_PROCESSOR_DIR=/private/tmp/modalmeter-m0-processor .venv-spike/bin/python -m pytest -m processor tests/test_processor.py -k 'pixel_budget' -q
+
+Initial actual result: 1 failed, 1 passed, 19 deselected in 5.06s; exit 1.
+The new reference invocation incorrectly mixed nested videos_kwargs.size with
+flat video_metadata/do_sample_frames. Transformers 4.57.6 _merge_kwargs prefers
+the nested modality dictionary and ignores those flat video controls; it warned
+about missing FPS, fell back to 24 and resampled. The production adapter uses
+flat controls consistently and was unaffected. Correct the independent reference
+by putting size, metadata and do_sample_frames together in videos_kwargs.
+Installed source: transformers/processing_utils.py, lines 1288-1320.
+
+Corrected actual result: 2 passed, 19 deselected in 4.38s; exit 0.
+The image case is also described under M1. The video case uses sixteen 96x64
+source frames at 4 FPS and a fixed total pixel budget of 24576:
+- Uniform 8 selected frames: processed dimensions 64x32, visual placeholders 8.
+- Uniform 16 selected frames: processed dimensions 32x32, visual placeholders 8.
+Complete non-padding prompt lengths differ because of timestamp/boundary
+overhead. This is a coupled frame-count/resize effect, not a measured speedup or
+an assertion that additional frames are free. No quality or server claim follows.
+
+The full processor file now has 21 cases. A full expanded invocation is left to
+the root agent's final milestone verification. The generator now additionally
+emits coupled-budget-video.mkv for the same original synthetic 16-frame input.

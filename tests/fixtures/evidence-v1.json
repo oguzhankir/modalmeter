@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "evidence",
+  "measurements": {
+    "encoder_execution_ms": {
+      "value": null,
+      "unit": "ms",
+      "evidence_kind": "unavailable",
+      "source": "synthetic contract example",
+      "scope": "no inference executed",
+      "method": "not instrumented",
+      "unavailable_reason": "M0 does not execute a model or collect GPU timings."
+    }
+  }
+}

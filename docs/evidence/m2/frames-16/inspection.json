@@ -1,0 +1,639 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "inspection",
+  "tool_version": "0.1.0.dev0",
+  "run_id": "c7ca43ca-d9eb-4fc7-a488-bde8a970c8ae",
+  "created_at": "2026-09-08T08:59:21.766908Z",
+  "completion_status": "complete",
+  "manifest": {
+    "schema_version": "1.0",
+    "record_kind": "media_manifest",
+    "kind": "video",
+    "sha256": "2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1",
+    "display_name": "video",
+    "source_bytes": 61202,
+    "source_width": 96,
+    "source_height": 64,
+    "oriented_width": 96,
+    "oriented_height": 64,
+    "source_mode": null,
+    "transforms": [
+      "PyAV decoded selected frames to RGB24; no decoder resize."
+    ],
+    "source_frame_count": 16,
+    "reported_frame_count": null,
+    "source_duration_seconds": null,
+    "source_duration_reason": "Video stream duration metadata is unavailable.",
+    "average_fps": 4.0,
+    "fps_reason": null,
+    "selected_frames": [
+      {
+        "ordinal": 0,
+        "pts": 0,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 0.0,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 0.0
+      },
+      {
+        "ordinal": 1,
+        "pts": 250,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 0.25,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 0.25
+      },
+      {
+        "ordinal": 2,
+        "pts": 500,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 0.5,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 0.5
+      },
+      {
+        "ordinal": 3,
+        "pts": 750,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 0.75,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 0.75
+      },
+      {
+        "ordinal": 4,
+        "pts": 1000,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 1.0,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 1.0
+      },
+      {
+        "ordinal": 5,
+        "pts": 1250,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 1.25,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 1.25
+      },
+      {
+        "ordinal": 6,
+        "pts": 1500,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 1.5,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 1.5
+      },
+      {
+        "ordinal": 7,
+        "pts": 1750,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 1.75,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 1.75
+      },
+      {
+        "ordinal": 8,
+        "pts": 2000,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 2.0,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 2.0
+      },
+      {
+        "ordinal": 9,
+        "pts": 2250,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 2.25,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 2.25
+      },
+      {
+        "ordinal": 10,
+        "pts": 2500,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 2.5,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 2.5
+      },
+      {
+        "ordinal": 11,
+        "pts": 2750,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 2.75,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 2.75
+      },
+      {
+        "ordinal": 12,
+        "pts": 3000,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 3.0,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 3.0
+      },
+      {
+        "ordinal": 13,
+        "pts": 3250,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 3.25,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 3.25
+      },
+      {
+        "ordinal": 14,
+        "pts": 3500,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 3.5,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 3.5
+      },
+      {
+        "ordinal": 15,
+        "pts": 3750,
+        "time_base_numerator": 1,
+        "time_base_denominator": 1000,
+        "timestamp_seconds": 3.75,
+        "timestamp_unavailable_reason": null,
+        "processor_timestamp_seconds": 3.75
+      }
+    ],
+    "requested_frames": 16,
+    "selected_frame_count": 16,
+    "processed_frame_count": 16,
+    "processed_frames": [
+      {
+        "position": 0,
+        "selected_position": 0,
+        "source_ordinal": 0,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 1,
+        "selected_position": 1,
+        "source_ordinal": 1,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 2,
+        "selected_position": 2,
+        "source_ordinal": 2,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 3,
+        "selected_position": 3,
+        "source_ordinal": 3,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 4,
+        "selected_position": 4,
+        "source_ordinal": 4,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 5,
+        "selected_position": 5,
+        "source_ordinal": 5,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 6,
+        "selected_position": 6,
+        "source_ordinal": 6,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 7,
+        "selected_position": 7,
+        "source_ordinal": 7,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 8,
+        "selected_position": 8,
+        "source_ordinal": 8,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 9,
+        "selected_position": 9,
+        "source_ordinal": 9,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 10,
+        "selected_position": 10,
+        "source_ordinal": 10,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 11,
+        "selected_position": 11,
+        "source_ordinal": 11,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 12,
+        "selected_position": 12,
+        "source_ordinal": 12,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 13,
+        "selected_position": 13,
+        "source_ordinal": 13,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 14,
+        "selected_position": 14,
+        "source_ordinal": 14,
+        "duplicated": false,
+        "duplication_reason": null
+      },
+      {
+        "position": 15,
+        "selected_position": 15,
+        "source_ordinal": 15,
+        "duplicated": false,
+        "duplication_reason": null
+      }
+    ],
+    "sampling_policy": "uniform",
+    "sampling_method": "Inclusive rational PTS targets, nearest frame; ties choose earlier PTS then ordinal; de-duplicate targets; one target selects the first frame.",
+    "timestamp_policy": "Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.",
+    "warnings": [
+      "Decoder runtime is checked between frames; native codec calls cannot be interrupted.",
+      "Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.",
+      "Container frame count is unavailable; source_frame_count is the complete decoded count."
+    ],
+    "decoder_versions": {
+      "PyAV": "16.1.0",
+      "FFmpeg libavutil": "60.8.100",
+      "FFmpeg libavcodec": "62.11.100",
+      "FFmpeg libavformat": "62.3.100",
+      "FFmpeg libavdevice": "62.1.100",
+      "FFmpeg libavfilter": "11.4.100",
+      "FFmpeg libswscale": "9.1.100",
+      "FFmpeg libswresample": "6.1.100"
+    },
+    "privacy_mode": "media_included"
+  },
+  "processor": {
+    "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "adapter_version": "qwen3-vl-native/1",
+    "dependency_versions": {
+      "transformers": "4.57.6",
+      "torch": "2.9.1",
+      "torchvision": "0.24.1",
+      "pillow": "12.0.0",
+      "av": "16.1.0",
+      "numpy": "2.5.3",
+      "tokenizers": "0.22.2",
+      "huggingface-hub": "0.36.2"
+    },
+    "artifact_sha256": {
+      "config.json": "bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b",
+      "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+      "tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "chat_template.json": "6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "effective_settings": {
+      "size": {
+        "longest_edge": 24576,
+        "shortest_edge": 4096
+      },
+      "patch_size": 16,
+      "temporal_patch_size": 2,
+      "merge_size": 2,
+      "do_resize": true,
+      "do_rescale": true,
+      "rescale_factor": 0.00392156862745098,
+      "do_normalize": true,
+      "image_mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "image_std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "do_convert_rgb": true,
+      "resample": 3,
+      "processor_class": "Qwen3VLVideoProcessor",
+      "device": "cpu",
+      "sampling_owner": "ModalMeter: native default indices or uniform PTS",
+      "do_sample_frames": false,
+      "native_default_fps": 2,
+      "native_min_frames": 4,
+      "native_max_frames": 768,
+      "timestamp_basis": "ordinal / nominal FPS; native grouped/rounded labels"
+    },
+    "runtime": {
+      "system": "Darwin",
+      "os_version": "26.6.2",
+      "machine": "arm64",
+      "python": "3.12.11",
+      "device": "cpu"
+    }
+  },
+  "token_accounting": {
+    "encoder_grid_positions": {
+      "value": 32,
+      "unit": "positions",
+      "evidence_kind": "observed",
+      "source": "pixel_values_videos",
+      "scope": "one processed media prompt",
+      "method": "Read the actual emitted patch tensor row count (shape[0]).",
+      "unavailable_reason": null
+    },
+    "visual_placeholder_positions": {
+      "value": 8,
+      "unit": "positions",
+      "evidence_kind": "observed",
+      "source": "processor input_ids",
+      "scope": "one processed media prompt",
+      "method": "Count token ID 151656 at active attention-mask positions.",
+      "unavailable_reason": null
+    },
+    "grid_derived_visual_positions": {
+      "value": 8,
+      "unit": "positions",
+      "evidence_kind": "derived",
+      "source": "video_grid_thw",
+      "scope": "one processed media prompt",
+      "method": "grid_t * grid_h * grid_w / merge_size^2; checked against placeholder IDs.",
+      "unavailable_reason": null
+    },
+    "nonpadding_prompt_positions": {
+      "value": 84,
+      "unit": "positions",
+      "evidence_kind": "observed",
+      "source": "processor attention_mask",
+      "scope": "one processed media prompt",
+      "method": "Sum non-padding positions.",
+      "unavailable_reason": null
+    },
+    "nonvisual_prompt_positions": {
+      "value": 76,
+      "unit": "positions",
+      "evidence_kind": "derived",
+      "source": "attention_mask and input_ids",
+      "scope": "one processed media prompt",
+      "method": "Non-padding prompt positions minus visual placeholder positions; includes chat template, timestamps and structural tokens, not just user text.",
+      "unavailable_reason": null
+    },
+    "vision_boundary_positions": {
+      "value": 16,
+      "unit": "positions",
+      "evidence_kind": "observed",
+      "source": "processor input_ids",
+      "scope": "one processed media prompt",
+      "method": "Count known vision-start and vision-end token IDs at active positions.",
+      "unavailable_reason": null
+    },
+    "video_timestamp_positions": {
+      "value": null,
+      "unit": "positions",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "Timestamp tokens are not isolated; included in the nonvisual residual."
+    },
+    "user_text_positions": {
+      "value": null,
+      "unit": "positions",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "User text is not isolated from template/structure; use the nonvisual residual."
+    },
+    "server_prompt_usage": {
+      "value": null,
+      "unit": "tokens",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No serving endpoint was contacted."
+    },
+    "server_completion_usage": {
+      "value": null,
+      "unit": "tokens",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No serving endpoint was contacted."
+    },
+    "placeholder_token_id": 151656,
+    "observed_placeholder_indices": [
+      10,
+      19,
+      28,
+      37,
+      46,
+      55,
+      64,
+      73
+    ],
+    "grid_matches_placeholders": true
+  },
+  "grid_thw": [
+    8,
+    2,
+    2
+  ],
+  "processed_width": 32,
+  "processed_height": 32,
+  "prompt_sha256": "3bcd095e1d6b4187ce9a19eaa6130475a84289ff0fd63ce0c44211dd285a6d55",
+  "template_sha256": "3636d0f0bd6bef02654cdffdc447b79cb2cef8ab02cc75267345946291a489e4",
+  "prompt_retained": false,
+  "group_timestamp_labels": [
+    "<0.1 seconds>",
+    "<0.6 seconds>",
+    "<1.1 seconds>",
+    "<1.6 seconds>",
+    "<2.1 seconds>",
+    "<2.6 seconds>",
+    "<3.1 seconds>",
+    "<3.6 seconds>"
+  ],
+  "thumbnails": [
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAuklEQVR4nO3WMQqDUBRFwRfUdbj/XaYJv0o88NvMYKXdwQf3NTPH9+f2/pg55xoeCBQECgIFgYJAQaBwznX/+OT9J1A1/G8CBYGCQEGgIFAQKNhBsfv8QUGgIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAs2zNxSwDtf6jWgIAAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUVAGcglUAz990KCLgI/6VJm5MjOnrzSvzxfj+vMt+fw/jpzm/twQqAgUBAoCBQECgKF29yPH5+8/wSqhv9NoCBQECgIFAQKAgU7KHafPygIFAQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaA59wb12A92Qxy42gAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwHxVAedZKgi4AnXcqMHNnZk1f6l8fzfsx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXtcPEBUIlK+mAAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwWVVEwGQm6CHjSpczIkZ09eaV/eTzvx8yn5/T+mLnObfhBoCBQECgIFAQKAoXr3M4vn7x/B6qG/02gIFAQKAgUBAoCBTsodp8/KAgUBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoPntBbhGELRnBjOaAAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwQ5VAexZGgi4AnXcqMHNnZk1f6l+f9ccx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXldFEFMo/Ve0AAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwzFVAgTZCgi4AnXcqMHNnZk1f6l+fjfsx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXjh8EPIrtX61AAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUVAEyTuP6E4KiBBF4GfdCkzcmRnT17pXx6v53Xm23N4f525zX04IVAQKAgUBAoCBYHCbe7Hj0/efwJVw/8mUBAoCBQECgIFgYIdFLvPHxQECgIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgIFCwgxY7aIsTCwIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgINCcewPWbBCRR3PK2AAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwNAbXTFAm6CHjSpczIkZ09eaV/edyfx8yn5/T+mLnObfhBoCBQECgIFAQKAoXr3M4vn7x/B6qG/02gIFAQKAgUBAoCBTsodp8/KAgUBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoPntBXVrEDCmwZm5AAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwmpVAiZZCgi4AnXcqMHNnZk1f6l/vjecx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXlaiEM/y+aB1AAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbh8iqMJEnQR8KRLmZEjO3vySv/2eJ73mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsB9pIQbsy8V/wAAAAASUVORK5CYII=",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WMQrCUBRFwSfRdQRciPtfgeuxkV+pB37rDKmS7pAH9/J83I+ZT8/p/TFzndvwg0BBoCBQECgIFAQK17mdXz55/w5UDf+bQEGgIFAQKAgUBAp2UOw+f1AQKAgUBAoCBYGCQMEOWuygLU4sCBQECgIFgYJAwQ5a7KAtTiwIFAQKAgWBgkDBDlrsoC1OLAgUBAoCBYGCQMEOWuygLU4sCBQECgIFgYJAwQ5a7KAtTiwIFAQKAgWBgkDz2wuVkRANJKKCCQAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbgUaqRjEnQR8KRLmZEjO3vySv92Ph/3mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsBM5APrDQejk4AAAAASUVORK5CYII=",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwE5VA+hZCgi4AnXcqMHNnZk1f6l/vzccx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXhTHEEsG2ouMAAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwGBVEF3ZOgi4AnXcqMHNnZk1f6l8f9ecx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXrO3D+rewNSKAAAAAElFTkSuQmCC",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WMQrCUBRFwSfRdWS/lhau10Z+pR74rTOkSrpDHtzL4/48Zj49p/fHzHVuww8CBYGCQEGgIFAQKFzndn755P07UDX8bwIFgYJAQaAgUBAo2EGx+/xBQaAgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCzW8vlO4QiTAf0zwAAAAASUVORK5CYII=",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUWGOtx/TAUUQi8k6CLgSZcyI0d29uSV/uXxvB8zn57T+2PmOrfhB4GCQEGgIFAQKAgUrnM7v3zy/h2oGv43gYJAQaAgUBAoCBTsoNh9/qAgUBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYGCHbTYQVucWBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYHmtxd2JREon0tAMAAAAABJRU5ErkJggg=="
+  ],
+  "compatibility": {
+    "modality": "video",
+    "processor_verification": "processor_verified",
+    "processor_evidence": "Pinned adapter compared with unmodified CPU processor in tests/test_processor.py; see docs/evidence/m1 and docs/evidence/m2 for exact cases and limits. This run also compares emitted grid counts with actual active placeholder IDs.",
+    "server_parity": "server_parity_unverified",
+    "server_parity_reason": "No live serving endpoint was tested."
+  },
+  "timings": {
+    "artifact_preparation_ms": {
+      "value": 9.941583,
+      "unit": "ms",
+      "evidence_kind": "measured",
+      "source": "client time.perf_counter_ns",
+      "scope": "local CPU inspection workflow",
+      "method": "Resolve/download and hash-check artifacts.",
+      "unavailable_reason": null
+    },
+    "processor_load_ms": {
+      "value": 3202.007625,
+      "unit": "ms",
+      "evidence_kind": "measured",
+      "source": "client time.perf_counter_ns",
+      "scope": "local CPU inspection workflow",
+      "method": "Load pinned processor/tokenizer on CPU.",
+      "unavailable_reason": null
+    },
+    "media_preparation_ms": {
+      "value": 27.040834,
+      "unit": "ms",
+      "evidence_kind": "measured",
+      "source": "client time.perf_counter_ns",
+      "scope": "local CPU inspection workflow",
+      "method": "Hash, decode, select frames, transform EXIF/RGB and optionally create thumbnails.",
+      "unavailable_reason": null
+    },
+    "cpu_processor_ms": {
+      "value": 16.572541,
+      "unit": "ms",
+      "evidence_kind": "measured",
+      "source": "client time.perf_counter_ns",
+      "scope": "local CPU inspection workflow",
+      "method": "Apply chat template and one native CPU processor call, including tensor preparation.",
+      "unavailable_reason": null
+    },
+    "workflow_ms": {
+      "value": 3259.977459,
+      "unit": "ms",
+      "evidence_kind": "measured",
+      "source": "client time.perf_counter_ns",
+      "scope": "local CPU inspection workflow",
+      "method": "API entry through accounting; excludes JSON/HTML serialization and output writes.",
+      "unavailable_reason": null
+    }
+  },
+  "unavailable_metrics": {
+    "time_to_first_output_ms": {
+      "value": null,
+      "unit": "ms",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No serving request was performed."
+    },
+    "end_to_end_server_ms": {
+      "value": null,
+      "unit": "ms",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No serving request was performed."
+    },
+    "gpu_memory_bytes": {
+      "value": null,
+      "unit": "bytes",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No GPU or serving-host telemetry was collected."
+    },
+    "vision_encoder_ms": {
+      "value": null,
+      "unit": "ms",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No model/vision encoder was loaded."
+    },
+    "answer_quality": {
+      "value": null,
+      "unit": "score",
+      "evidence_kind": "unavailable",
+      "source": "ModalMeter CPU inspection",
+      "scope": "one inspection",
+      "method": "not captured",
+      "unavailable_reason": "No model output or task-quality evaluation was produced."
+    }
+  },
+  "requested_settings": {
+    "sampling": "uniform",
+    "frames": 16,
+    "pixel_budget": 24576,
+    "max_file_bytes": 268435456,
+    "max_pixels": 16777216,
+    "max_frames": 128,
+    "max_decoded_frames": 10000,
+    "max_decoded_bytes": 268435456,
+    "max_decode_seconds": 30.0,
+    "max_tensor_bytes": 268435456,
+    "max_prompt_bytes": 16384
+  },
+  "warnings": [
+    "Decoder runtime is checked between frames; native codec calls cannot be interrupted.",
+    "Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.",
+    "Container frame count is unavailable; source_frame_count is the complete decoded count.",
+    "Timestamp token positions are not isolated; timestamp text and boundaries are included in the nonvisual prompt residual. Native labels use index/FPS, not PTS."
+  ]
+}

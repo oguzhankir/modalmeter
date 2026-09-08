@@ -1,0 +1,67 @@
+Actual M1/M2 CPU quickstart, 2026-09-08. Synthetic original MIT media only.
+Pinned processor artifacts explicitly prepared first; all commands below offline.
+
+$ .venv-spike/bin/python examples/generate_fixtures.py --output runs/synthetic-media
+runs/synthetic-media/fixture-provenance.json
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/synthetic-image.png --cache-dir .cache/modalmeter --offline --output docs/evidence/m1/image --overwrite --json
+JSON stdout parsed as exactly one record: inspection
+{"grid": [1, 14, 22], "visual": 77, "prompt": 91}
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/synthetic-image.png --cache-dir .cache/modalmeter --offline --output runs/image-offline-rerun --json
+JSON stdout parsed as exactly one record: inspection
+{"grid": [1, 14, 22], "visual": 77, "prompt": 91}
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/synthetic-video.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/video-default
+Inspection complete: video; 18 visual placeholder positions; 54 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/synthetic-video.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/video-odd --sampling uniform --frames 3
+Inspection complete: video; 12 visual placeholder positions; 40 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/single-frame.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/video-single --sampling uniform --frames 1
+Inspection complete: video; 6 visual placeholder positions; 26 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/vfr-offset.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/video-vfr --sampling uniform --frames 3
+Inspection complete: video; 12 visual placeholder positions; 40 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/coupled-budget-video.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/frames-8 --sampling uniform --frames 8 --pixel-budget 24576
+Inspection complete: video; 8 visual placeholder positions; 52 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv-spike/bin/modalmeter inspect runs/synthetic-media/coupled-budget-video.mkv --cache-dir .cache/modalmeter --offline --include-media --output docs/evidence/m2/frames-16 --sampling uniform --frames 16 --pixel-budget 24576
+Inspection complete: video; 8 visual placeholder positions; 84 non-padding prompt positions.
+Wrote inspection.json, manifest.json, and report.html to the requested output.
+Serving parity remains unverified; no latency or GPU memory was measured.
+exit=0
+
+$ .venv/bin/modalmeter compare docs/evidence/m2/frames-8 docs/evidence/m2/frames-16 --output docs/evidence/m2/comparison --include-media
+Comparison written: 2 inspections; baseline compatible.
+exit=0
+
+$ .venv/bin/modalmeter report docs/evidence/m2/video-odd --output runs/base-only-report.html
+Wrote the self-contained HTML report to the requested output.
+exit=0
+
+$ .venv/bin/modalmeter report docs/evidence/m2/comparison --output runs/base-only-comparison.html
+Wrote the self-contained HTML report to the requested output.
+exit=0
+
+PASS: offline image rerun equal excluding UUID, creation time and measured timings.
+PASS: comparison is compatible and exposes the coupled frame/resize change.

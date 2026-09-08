@@ -1,0 +1,38 @@
+{
+  "checked_date": "2026-09-08",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+  "uname": "Darwin arm64",
+  "verified_uv": "uv 0.11.7 (9d177269e 2026-04-15 aarch64-apple-darwin)",
+  "current_global_uv": "uv 0.12.10 (Homebrew 2026-09-04 aarch64-apple-darwin)",
+  "git": "git version 2.50.1 (Apple Git-155)",
+  "python": {
+    "base312": {
+      "python": "3.12.11",
+      "machine": "arm64"
+    },
+    "base311": {
+      "python": "3.11.15",
+      "machine": "arm64"
+    },
+    "spike": {
+      "python": "3.12.11",
+      "machine": "arm64"
+    }
+  },
+  "initial_observation": {
+    "python_path": "/opt/miniconda3/bin/python3",
+    "python": "3.12.12",
+    "architecture": "x86_64",
+    "uv_path": "/Users/oguz/.local/bin/uv",
+    "uv": "0.11.7"
+  },
+  "environment_drift": "Initial Conda and local uv paths disappeared during work; global uv became 0.12.10. M0 did not modify global tools. Final checks use isolated uv 0.11.7.",
+  "branch": "oguzhankir/modalmeter-foundation",
+  "baseline_commit": "a954f0cfefbf1fcfa09c1116ee7b726c19d3ebc5",
+  "contract_sha256": "f84e4c8359698adfa6359b39bab90c1faaa30fdc9cc0aa3ce6f7370a42d57a20",
+  "contract_copy_identical": true,
+  "existing_license_preserved": true,
+  "gpu_access": "none supplied",
+  "gpu_budget": 0,
+  "endpoint": "not supplied"
+}

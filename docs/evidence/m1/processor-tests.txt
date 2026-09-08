@@ -1,0 +1,41 @@
+M1 image acceptance evidence from the shared M1/M2 processor suite.
+Recorded 2026-09-08, macOS ARM64, .venv-spike Python 3.12.11.
+Processor artifact SHA-256 values were independently checked by the suite.
+
+Command (repository root):
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false MODALMETER_TEST_PROCESSOR_DIR=/private/tmp/modalmeter-m0-processor .venv-spike/bin/python -m pytest -m processor tests/test_processor.py -q
+
+Actual final pytest summary:
+19 passed in 13.17s
+Process exit code: 0
+
+This was one shared suite invocation, also recorded under M2; do not add the
+two records together as separate runs. The total includes image, video,
+synthetic fixture provenance, offline rerun, and native single-pass tests.
+
+M1 cases compare native reference input IDs, active attention-mask positions,
+patch tensor rows and grids at image dimensions 1x1, 31x31, 32x33, 65x63,
+1024x32 and 6400x32. Aspect ratio above 200 has an explicit rejected outcome.
+An actual padded reference result has width 512 but a shorter active prompt;
+the adapter reports the attention-mask sum. Cached reruns retain deterministic
+observations. No network connections, weights, model forward/generate calls,
+or GPU are involved. This does not establish server parity.
+
+Scoped quality commands also completed:
+.venv/bin/ruff check tests/test_processor.py examples/generate_fixtures.py
+All checks passed!
+.venv/bin/mypy --follow-imports=silent tests/test_processor.py examples/generate_fixtures.py
+Success: no issues found in 2 source files
+
+Later expanded-suite results, if present, supersede the test count here without
+changing what this original run actually executed.
+
+Additional approved upper-pixel-budget coverage was then added for image/video.
+Command:
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false MODALMETER_TEST_PROCESSOR_DIR=/private/tmp/modalmeter-m0-processor .venv-spike/bin/python -m pytest -m processor tests/test_processor.py -k 'pixel_budget' -q
+Final actual result after correcting the video reference invocation:
+2 passed, 19 deselected in 4.38s
+Process exit code: 0
+The image case compares a real downscale of a 512x384 image at max pixel budget
+65536 against native reference output. The full processor file now has 21 cases;
+the full expanded invocation is left to final milestone verification.
