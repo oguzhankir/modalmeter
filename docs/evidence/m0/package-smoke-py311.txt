@@ -1,0 +1,125 @@
+PATH prefix: /private/tmp/modalmeter-uv-tool/bin
+UV_PYTHON=/private/tmp/modalmeter-python/cpython-3.11.15-macos-aarch64-none/bin/python3.11
+UV_PROJECT_ENVIRONMENT=.venv-py311
+UV_CACHE_DIR=/private/tmp/modalmeter-uv-cache
+$ uv export --locked --no-dev --no-emit-project --no-hashes --output-file /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/constraints.txt --quiet
+$ uv venv --python /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python3 /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0
+Using CPython 3.11.15 interpreter at: /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python3
+Creating virtual environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0
+Activate with: source /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/activate
+$ uv pip install --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/python --constraint /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/constraints.txt /Users/oguz/Desktop/modalmeter/dist/modalmeter-0.0.0.dev0-py3-none-any.whl
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0
+Resolved 14 packages in 8ms
+Installed 14 packages in 16ms
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + click==8.5.0
+ + markdown-it-py==4.2.0
+ + mdurl==0.1.2
+ + modalmeter==0.0.0.dev0 (from file:///Users/oguz/Desktop/modalmeter/dist/modalmeter-0.0.0.dev0-py3-none-any.whl)
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pygments==2.21.0
+ + rich==14.3.4
+ + shellingham==1.5.4
+ + typer==0.21.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/modalmeter --help
+                                                                                
+ Usage: modalmeter [OPTIONS] [COMMAND] [ARGS]...                                
+                                                                                
+ ModalMeter: multimodal profiling foundations. Inspection is not implemented    
+ yet.                                                                           
+                                                                                
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --version          Show the version and exit.                                │
+│ --help             Show this message and exit.                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/modalmeter --version
+modalmeter 0.0.0.dev0
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/python -c 
+import importlib.metadata as metadata
+import importlib.util
+from importlib.resources import files
+import modalmeter
+from modalmeter.schemas import EvidenceDocument
+for name in ('torch', 'torchvision', 'transformers', 'PIL', 'av', 'vllm'):
+    assert importlib.util.find_spec(name) is None, name
+assert files('modalmeter').joinpath('py.typed').is_file()
+assert metadata.version('modalmeter') == modalmeter.__version__
+assert 'site-packages' in str(files('modalmeter'))
+doc = EvidenceDocument.model_validate_json(
+    '{"schema_version":"1.0","record_kind":"evidence","measurements":{}}'
+)
+assert doc.schema_version == '1.0'
+print('PASS: installed package, version, py.typed, stored JSON; heavy dependencies absent')
+
+PASS: installed package, version, py.typed, stored JSON; heavy dependencies absent
+$ uv pip check --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0/bin/python
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-0
+Checked 14 packages in 0.84ms
+All installed packages are compatible
+PASS: modalmeter-0.0.0.dev0-py3-none-any.whl
+$ uv venv --python /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python3 /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1
+Using CPython 3.11.15 interpreter at: /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python3
+Creating virtual environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1
+Activate with: source /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/activate
+$ uv pip install --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/python --constraint /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/constraints.txt /Users/oguz/Desktop/modalmeter/dist/modalmeter-0.0.0.dev0.tar.gz
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1
+Resolved 14 packages in 7ms
+Installed 14 packages in 17ms
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + click==8.5.0
+ + markdown-it-py==4.2.0
+ + mdurl==0.1.2
+ + modalmeter==0.0.0.dev0 (from file:///Users/oguz/Desktop/modalmeter/dist/modalmeter-0.0.0.dev0.tar.gz)
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pygments==2.21.0
+ + rich==14.3.4
+ + shellingham==1.5.4
+ + typer==0.21.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/modalmeter --help
+                                                                                
+ Usage: modalmeter [OPTIONS] [COMMAND] [ARGS]...                                
+                                                                                
+ ModalMeter: multimodal profiling foundations. Inspection is not implemented    
+ yet.                                                                           
+                                                                                
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --version          Show the version and exit.                                │
+│ --help             Show this message and exit.                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/modalmeter --version
+modalmeter 0.0.0.dev0
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/python -c 
+import importlib.metadata as metadata
+import importlib.util
+from importlib.resources import files
+import modalmeter
+from modalmeter.schemas import EvidenceDocument
+for name in ('torch', 'torchvision', 'transformers', 'PIL', 'av', 'vllm'):
+    assert importlib.util.find_spec(name) is None, name
+assert files('modalmeter').joinpath('py.typed').is_file()
+assert metadata.version('modalmeter') == modalmeter.__version__
+assert 'site-packages' in str(files('modalmeter'))
+doc = EvidenceDocument.model_validate_json(
+    '{"schema_version":"1.0","record_kind":"evidence","measurements":{}}'
+)
+assert doc.schema_version == '1.0'
+print('PASS: installed package, version, py.typed, stored JSON; heavy dependencies absent')
+
+PASS: installed package, version, py.typed, stored JSON; heavy dependencies absent
+$ uv pip check --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1/bin/python
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-4kguqz3b/env-1
+Checked 14 packages in 1ms
+All installed packages are compatible
+PASS: modalmeter-0.0.0.dev0.tar.gz
+
+exit_code=0

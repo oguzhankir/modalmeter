@@ -1,0 +1,14 @@
+Building source distribution...
+WARN Retry attempt #0. Sleeping 1.510212524s before the next attempt
+WARN Retry attempt #1. Sleeping 2.245838424s before the next attempt
+WARN Retry attempt #2. Sleeping 3.92137747s before the next attempt
+  × Failed to build `/Users/oguz/Desktop/modalmeter`
+  ├─▶ Failed to resolve requirements from `build-system.requires`
+  ├─▶ No solution found when resolving: `hatchling==1.27.0`
+  ├─▶ Request failed after 3 retries in 7.7s
+  ├─▶ Failed to fetch: `https://pypi.org/simple/hatchling/`
+  ├─▶ error sending request for url (https://pypi.org/simple/hatchling/)
+  ├─▶ client error (Connect)
+  ├─▶ dns error
+  ╰─▶ failed to lookup address information: nodename nor servname provided, or
+      not known

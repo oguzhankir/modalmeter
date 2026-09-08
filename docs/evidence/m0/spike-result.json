@@ -1,0 +1,108 @@
+{
+  "purpose": "M0 feasibility only; synthetic inputs, no model weights or inference",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.11"
+  },
+  "versions": {
+    "transformers": "4.57.6",
+    "torch": "2.9.1",
+    "torchvision": "0.24.1",
+    "av": "16.1.0",
+    "pillow": "12.0.0",
+    "numpy": "2.5.3",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.22.2"
+  },
+  "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "processor_class": "Qwen3VLProcessor",
+  "image_processor_class": "Qwen2VLImageProcessorFast",
+  "video_processor_class": "Qwen3VLVideoProcessor",
+  "video_size": {
+    "longest_edge": 25165824,
+    "shortest_edge": 4096
+  },
+  "video_defaults": {
+    "fps": 2,
+    "min_frames": 4,
+    "max_frames": 768,
+    "do_sample_frames": true,
+    "patch_size": 16,
+    "temporal_patch_size": 2,
+    "merge_size": 2
+  },
+  "selected_source_indices": [
+    1,
+    5,
+    9
+  ],
+  "indices_after_video_preprocessing": [
+    1,
+    5,
+    9
+  ],
+  "metadata_indices_after_prompt_expansion": [
+    1,
+    5,
+    9,
+    9
+  ],
+  "video_grid_thw_observed": [
+    [
+      2,
+      4,
+      4
+    ]
+  ],
+  "expanded_prompt_observed": "<1.5 seconds><|vision_start|><|video_pad|><|video_pad|><|video_pad|><|video_pad|><|vision_end|><4.5 seconds><|vision_start|><|video_pad|><|video_pad|><|video_pad|><|video_pad|><|vision_end|>",
+  "pyav_roundtrip": {
+    "codec": "ffv1",
+    "frames": 3,
+    "pts_seconds_rational": [
+      "0",
+      "1/2",
+      "1"
+    ],
+    "pixels_equal": true
+  },
+  "ffmpeg_libraries": {
+    "libavutil": [
+      60,
+      8,
+      100
+    ],
+    "libavcodec": [
+      62,
+      11,
+      100
+    ],
+    "libavformat": [
+      62,
+      3,
+      100
+    ],
+    "libavdevice": [
+      62,
+      1,
+      100
+    ],
+    "libavfilter": [
+      11,
+      4,
+      100
+    ],
+    "libswscale": [
+      9,
+      1,
+      100
+    ],
+    "libswresample": [
+      6,
+      1,
+      100
+    ]
+  },
+  "processor_verification": "not_run",
+  "server_parity": "server_parity_unverified"
+}

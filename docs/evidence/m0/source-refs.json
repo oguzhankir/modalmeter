@@ -1,0 +1,30 @@
+{
+  "actions/checkout": {
+    "ref": "v4.2.2",
+    "sha": "11bd71901bbe5b1630ceea73d27597364c9af683"
+  },
+  "astral-sh/setup-uv": {
+    "ref": "v7",
+    "sha": "37802adc94f370d6bfd71619e3f0bf239e1f3b78"
+  },
+  "huggingface/transformers": {
+    "ref": "v4.57.6",
+    "sha": "753d61104116eefc8ffc977327b441ee0c8d599f"
+  },
+  "QwenLM/Qwen3-VL": {
+    "ref": "main",
+    "sha": "96588727e44c78b25ba03ea03b8e12f7e64fd0da"
+  },
+  "vllm-project/guidellm": {
+    "ref": "main",
+    "sha": "fc2dbe9edd4f7f1a4e9ccd752f6f43591adbcb73"
+  },
+  "vllm-doctor/vllm-doctor": {
+    "ref": "main",
+    "sha": "a96df3f1acea75ca6c59be9622019cb5f97804bd"
+  },
+  "ai-dynamo/aiconfigurator": {
+    "ref": "main",
+    "sha": "77fd0773407b3683d8a671fe24a30a7110651b64"
+  }
+}

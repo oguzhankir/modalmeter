@@ -1,0 +1,32 @@
+UV_PYTHON=/usr/local/bin/python3.11
+UV_PROJECT_ENVIRONMENT=.venv-py311
+UV_CACHE_DIR=/private/tmp/modalmeter-uv-cache
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 NO_COLOR=1 TERM=dumb
+
+$ uv run --locked ruff format --check .
+WARN Retry attempt #0. Sleeping 1.962176399s before the next attempt
+WARN Retry attempt #0. Sleeping 1.505916625s before the next attempt
+WARN Retry attempt #0. Sleeping 1.18631637s before the next attempt
+WARN Retry attempt #0. Sleeping 1.195080682s before the next attempt
+WARN Retry attempt #1. Sleeping 3.899688144s before the next attempt
+WARN Retry attempt #1. Sleeping 2.610576427s before the next attempt
+WARN Retry attempt #1. Sleeping 1.569167144s before the next attempt
+WARN Retry attempt #1. Sleeping 1.529548108s before the next attempt
+WARN Retry attempt #2. Sleeping 2.331437964s before the next attempt
+WARN Retry attempt #2. Sleeping 1.587712978s before the next attempt
+WARN Retry attempt #2. Sleeping 1.232877686s before the next attempt
+  × Failed to download `librt==0.15.0`
+  ├─▶ Request failed after 3 retries in 5.0s
+  ├─▶ Failed to fetch:
+  │   `https://files.pythonhosted.org/packages/59/52/06790ced2ac7117f890c21bda43c39c958ec82aa665c0718e821d33ff939/librt-0.15.0-cp311-cp311-macosx_10_9_x86_64.whl`
+  ├─▶ error sending request for url
+  │   (https://files.pythonhosted.org/packages/59/52/06790ced2ac7117f890c21bda43c39c958ec82aa665c0718e821d33ff939/librt-0.15.0-cp311-cp311-macosx_10_9_x86_64.whl)
+  ├─▶ client error (Connect)
+  ├─▶ dns error
+  ╰─▶ failed to lookup address information: nodename nor servname provided, or
+      not known
+  help: `librt` (v0.15.0) was included because `modalmeter:dev` depends on
+        `mypy` (v1.19.1) which depends on `librt`
+
+exit_code=1
+

@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 189, in convert_to_tensors
+    tensor = as_tensor(value)
+             ^^^^^^^^^^^^^^^^
+  File "/Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 144, in as_tensor
+    return torch.tensor(value)
+           ^^^^^^^^^^^^^^^^^^^
+ValueError: could not determine the shape of object type 'VideoMetadata'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/oguz/Desktop/modalmeter/docs/evidence/m0/spike.py", line 37, in <module>
+    processed = processor(
+                ^^^^^^^^^^
+  File "/Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/transformers/models/qwen3_vl/processing_qwen3_vl.py", line 247, in __call__
+    return BatchFeature(data={**text_inputs, **image_inputs, **videos_inputs}, tensor_type=return_tensors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 79, in __init__
+    self.convert_to_tensors(tensor_type=tensor_type)
+  File "/Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 195, in convert_to_tensors
+    raise ValueError(
+ValueError: Unable to create tensor, you should probably activate padding with 'padding=True' to have batched tensors with the same length.

@@ -1,0 +1,30 @@
+[
+  {
+    "path": "models/qwen3_vl/processing_qwen3_vl.py",
+    "source_url": "https://github.com/huggingface/transformers/blob/753d61104116eefc8ffc977327b441ee0c8d599f/src/transformers/models/qwen3_vl/processing_qwen3_vl.py",
+    "downloaded_sha256": "efd8d64aaf608aad1ffb3e6d503d6a99e5227d007df95c1d9fa905d998cda4a9",
+    "installed_sha256": "efd8d64aaf608aad1ffb3e6d503d6a99e5227d007df95c1d9fa905d998cda4a9",
+    "identical": true
+  },
+  {
+    "path": "models/qwen3_vl/video_processing_qwen3_vl.py",
+    "source_url": "https://github.com/huggingface/transformers/blob/753d61104116eefc8ffc977327b441ee0c8d599f/src/transformers/models/qwen3_vl/video_processing_qwen3_vl.py",
+    "downloaded_sha256": "a49a83fc45cd9baa3e391a68af79743c70d47b86d7d6c81a262fda4104f89db7",
+    "installed_sha256": "a49a83fc45cd9baa3e391a68af79743c70d47b86d7d6c81a262fda4104f89db7",
+    "identical": true
+  },
+  {
+    "path": "video_utils.py",
+    "source_url": "https://github.com/huggingface/transformers/blob/753d61104116eefc8ffc977327b441ee0c8d599f/src/transformers/video_utils.py",
+    "downloaded_sha256": "3bc174f4cf68115ead399b49521dfc699b1bf6055e5afe9a4372fd98ed819dbe",
+    "installed_sha256": "3bc174f4cf68115ead399b49521dfc699b1bf6055e5afe9a4372fd98ed819dbe",
+    "identical": true
+  },
+  {
+    "path": "video_processing_utils.py",
+    "source_url": "https://github.com/huggingface/transformers/blob/753d61104116eefc8ffc977327b441ee0c8d599f/src/transformers/video_processing_utils.py",
+    "downloaded_sha256": "067dc959fe800d5a5a5ab39c54b53817a4b59424f31436767d7361c20b3ba409",
+    "installed_sha256": "067dc959fe800d5a5a5ab39c54b53817a4b59424f31436767d7361c20b3ba409",
+    "identical": true
+  }
+]
