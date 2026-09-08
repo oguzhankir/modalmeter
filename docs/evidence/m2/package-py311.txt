@@ -1,0 +1,118 @@
+Captured command output; trailing terminal padding spaces removed for Git whitespace checks.
+$ uv export --locked --no-dev --no-emit-project --no-hashes --output-file /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/constraints.txt --quiet
+$ uv venv --python /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0
+Using CPython 3.11.15 interpreter at: /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python
+Creating virtual environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0
+Activate with: source /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/activate
+$ uv pip install --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/python --constraint /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/constraints.txt /Users/oguz/Desktop/modalmeter/dist/modalmeter-0.1.0.dev0-py3-none-any.whl
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0
+Resolved 16 packages in 126ms
+Installed 16 packages in 16ms
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + click==8.5.0
+ + jinja2==3.1.6
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + mdurl==0.1.2
+ + modalmeter==0.1.0.dev0 (from file:///Users/oguz/Desktop/modalmeter/dist/modalmeter-0.1.0.dev0-py3-none-any.whl)
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pygments==2.21.0
+ + rich==14.3.4
+ + shellingham==1.5.4
+ + typer==0.21.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/modalmeter --help
+
+ Usage: modalmeter [OPTIONS] [COMMAND] [ARGS]...
+
+ Inspect multimodal inputs on CPU and render portable offline reports.
+
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --version          Show the version and exit.                                │
+│ --help             Show this message and exit.                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ───────────────────────────────────────────────────────────────────╮
+│ prepare  Download or verify eight processor artifacts; never download model  │
+│          weights.                                                            │
+│ inspect  Inspect one image/video with the pinned real processor on CPU,      │
+│          without weights.                                                    │
+│ report   Render stored result data offline; no inspection extra or processor │
+│          is needed.                                                          │
+│ compare  Compare input facts and derived token counts; latency and memory    │
+│          stay unavailable.                                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/modalmeter --version
+modalmeter 0.1.0.dev0
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py api /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/inspection-v1.json /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-0
+PASS: isolated installed package, version, py.typed, template, artifact allowlist, real stored image and labeled comparison-copy JSON/HTML; heavy imports and network blocked
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py cli report /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-0/image --output /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-0/image-cli.html
+Wrote the self-contained HTML report to the requested output.
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py cli report /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-0/comparison --output /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-0/comparison-cli.html
+Wrote the self-contained HTML report to the requested output.
+$ uv pip check --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0/bin/python
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-0
+Checked 16 packages in 0.81ms
+All installed packages are compatible
+PASS: modalmeter-0.1.0.dev0-py3-none-any.whl
+$ uv venv --python /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1
+Using CPython 3.11.15 interpreter at: /Users/oguz/Desktop/modalmeter/.venv-py311/bin/python
+Creating virtual environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1
+Activate with: source /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/activate
+$ uv pip install --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/python --constraint /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/constraints.txt /Users/oguz/Desktop/modalmeter/dist/modalmeter-0.1.0.dev0.tar.gz
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1
+Resolved 16 packages in 5ms
+Installed 16 packages in 17ms
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + click==8.5.0
+ + jinja2==3.1.6
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + mdurl==0.1.2
+ + modalmeter==0.1.0.dev0 (from file:///Users/oguz/Desktop/modalmeter/dist/modalmeter-0.1.0.dev0.tar.gz)
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pygments==2.21.0
+ + rich==14.3.4
+ + shellingham==1.5.4
+ + typer==0.21.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/modalmeter --help
+
+ Usage: modalmeter [OPTIONS] [COMMAND] [ARGS]...
+
+ Inspect multimodal inputs on CPU and render portable offline reports.
+
+╭─ Options ────────────────────────────────────────────────────────────────────╮
+│ --version          Show the version and exit.                                │
+│ --help             Show this message and exit.                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ───────────────────────────────────────────────────────────────────╮
+│ prepare  Download or verify eight processor artifacts; never download model  │
+│          weights.                                                            │
+│ inspect  Inspect one image/video with the pinned real processor on CPU,      │
+│          without weights.                                                    │
+│ report   Render stored result data offline; no inspection extra or processor │
+│          is needed.                                                          │
+│ compare  Compare input facts and derived token counts; latency and memory    │
+│          stay unavailable.                                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/modalmeter --version
+modalmeter 0.1.0.dev0
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py api /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/inspection-v1.json /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-1
+PASS: isolated installed package, version, py.typed, template, artifact allowlist, real stored image and labeled comparison-copy JSON/HTML; heavy imports and network blocked
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py cli report /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-1/image --output /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-1/image-cli.html
+Wrote the self-contained HTML report to the requested output.
+$ /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/python -I /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/check_installed_base.py cli report /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-1/comparison --output /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/outputs-1/comparison-cli.html
+Wrote the self-contained HTML report to the requested output.
+$ uv pip check --python /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1/bin/python
+Using Python 3.11.15 environment at: /var/folders/1r/1k1y3nts0_ldchv192_z9lc80000gn/T/modalmeter-package-rom7a5kb/env-1
+Checked 16 packages in 0.87ms
+All installed packages are compatible
+PASS: modalmeter-0.1.0.dev0.tar.gz

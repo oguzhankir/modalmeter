@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "media_manifest",
+  "kind": "image",
+  "sha256": "ed43e1d9f464d8d086b0ac5afb1c0edaa1dcdeb152f3bccd4fcd2a0f3fbaf7d7",
+  "display_name": "image",
+  "source_bytes": 362,
+  "source_width": 160,
+  "source_height": 96,
+  "oriented_width": 160,
+  "oriented_height": 96,
+  "source_mode": "RGB",
+  "transforms": [],
+  "source_frame_count": 1,
+  "reported_frame_count": null,
+  "source_duration_seconds": null,
+  "source_duration_reason": "Still images have no duration.",
+  "average_fps": null,
+  "fps_reason": "Still images have no frame rate.",
+  "selected_frames": [
+    {
+      "ordinal": 0,
+      "pts": null,
+      "time_base_numerator": null,
+      "time_base_denominator": null,
+      "timestamp_seconds": null,
+      "timestamp_unavailable_reason": "Still images have no presentation timestamp.",
+      "processor_timestamp_seconds": null
+    }
+  ],
+  "requested_frames": null,
+  "selected_frame_count": 1,
+  "processed_frame_count": 1,
+  "processed_frames": [
+    {
+      "position": 0,
+      "selected_position": 0,
+      "source_ordinal": 0,
+      "duplicated": false,
+      "duplication_reason": null
+    }
+  ],
+  "sampling_policy": "not_applicable",
+  "sampling_method": "One still image; no frame sampling.",
+  "timestamp_policy": "Not applicable to still images.",
+  "warnings": [],
+  "decoder_versions": {
+    "Pillow": "12.0.0"
+  },
+  "privacy_mode": "sanitized"
+}

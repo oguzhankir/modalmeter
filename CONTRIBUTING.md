@@ -10,7 +10,8 @@ Use Python 3.11/3.12 and uv 0.11.7. [AGENTS.md](AGENTS.md#developer-commands) ho
 the canonical command table. [Local development](docs/local-development.md) records
 the actual Mac interpreter and environment setup. Keep `uv.lock` in review when
 dependencies change; do not silently introduce Git-main dependencies. The base
-environment is enough for M0. Inspect-extra downloads are explicit and separate.
+environment covers stored reports/comparisons and offline contracts. Real media
+inspection requires the explicit inspect extra and separately prepared artifacts.
 
 [Testing](docs/testing.md) explains what offline, processor, protocol and live tests
 prove. Never download model artifacts from a default unit test. A new adapter must

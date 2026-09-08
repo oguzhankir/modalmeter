@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "media_manifest",
+  "kind": "video",
+  "sha256": "7728268a1f737e89f1b764ed038cc68956edd4536fdaab880503070c933b1194",
+  "display_name": "video",
+  "source_bytes": 19574,
+  "source_width": 96,
+  "source_height": 64,
+  "oriented_width": 96,
+  "oriented_height": 64,
+  "source_mode": null,
+  "transforms": [
+    "PyAV decoded selected frames to RGB24; no decoder resize."
+  ],
+  "source_frame_count": 5,
+  "reported_frame_count": null,
+  "source_duration_seconds": null,
+  "source_duration_reason": "Video stream duration metadata is unavailable.",
+  "average_fps": 2.5,
+  "fps_reason": null,
+  "selected_frames": [
+    {
+      "ordinal": 0,
+      "pts": 2000,
+      "time_base_numerator": 1,
+      "time_base_denominator": 1000,
+      "timestamp_seconds": 2.0,
+      "timestamp_unavailable_reason": null,
+      "processor_timestamp_seconds": 0.0
+    },
+    {
+      "ordinal": 3,
+      "pts": 3100,
+      "time_base_numerator": 1,
+      "time_base_denominator": 1000,
+      "timestamp_seconds": 3.1,
+      "timestamp_unavailable_reason": null,
+      "processor_timestamp_seconds": 1.2
+    },
+    {
+      "ordinal": 4,
+      "pts": 3900,
+      "time_base_numerator": 1,
+      "time_base_denominator": 1000,
+      "timestamp_seconds": 3.9,
+      "timestamp_unavailable_reason": null,
+      "processor_timestamp_seconds": 1.6
+    }
+  ],
+  "requested_frames": 3,
+  "selected_frame_count": 3,
+  "processed_frame_count": 4,
+  "processed_frames": [
+    {
+      "position": 0,
+      "selected_position": 0,
+      "source_ordinal": 0,
+      "duplicated": false,
+      "duplication_reason": null
+    },
+    {
+      "position": 1,
+      "selected_position": 1,
+      "source_ordinal": 3,
+      "duplicated": false,
+      "duplication_reason": null
+    },
+    {
+      "position": 2,
+      "selected_position": 2,
+      "source_ordinal": 4,
+      "duplicated": false,
+      "duplication_reason": null
+    },
+    {
+      "position": 3,
+      "selected_position": 2,
+      "source_ordinal": 4,
+      "duplicated": true,
+      "duplication_reason": "native_temporal_padding"
+    }
+  ],
+  "sampling_policy": "uniform",
+  "sampling_method": "Inclusive rational PTS targets, nearest frame; ties choose earlier PTS then ordinal; de-duplicate targets; one target selects the first frame.",
+  "timestamp_policy": "Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.",
+  "warnings": [
+    "Decoder runtime is checked between frames; native codec calls cannot be interrupted.",
+    "Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.",
+    "Variable presentation intervals observed; processor index/FPS timestamps differ from actual PTS.",
+    "Nonzero PTS origin is preserved; processor index/FPS timestamps start at decoded ordinal zero.",
+    "Container frame count is unavailable; source_frame_count is the complete decoded count.",
+    "Actual decoded PTS are retained separately; native prompt timestamp labels use ordinal / nominal FPS."
+  ],
+  "decoder_versions": {
+    "PyAV": "16.1.0",
+    "FFmpeg libavutil": "60.8.100",
+    "FFmpeg libavcodec": "62.11.100",
+    "FFmpeg libavformat": "62.3.100",
+    "FFmpeg libavdevice": "62.1.100",
+    "FFmpeg libavfilter": "11.4.100",
+    "FFmpeg libswscale": "9.1.100",
+    "FFmpeg libswresample": "6.1.100"
+  },
+  "privacy_mode": "media_included"
+}

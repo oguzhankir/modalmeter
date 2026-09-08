@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "modalmeter"
 dynamic = ["version"]
-description = "Foundations for evidence-based multimodal input and serving inspection"
+description = "Inspect multimodal inputs with reproducible processor evidence and offline reports"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = "MIT"
@@ -14,6 +14,7 @@ dependencies = [
   "pydantic>=2.12,<3",
   "rich>=14.2,<15",
   "typer>=0.21,<0.22",
+  "jinja2>=3.1.6,<4",
 ]
 
 [project.optional-dependencies]
@@ -42,7 +43,7 @@ path = "src/modalmeter/__init__.py"
 packages = ["src/modalmeter"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/scripts/package_smoke.py", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE", "/CHANGELOG.md"]
+include = ["/src", "/tests", "/examples", "/scripts/package_smoke.py", "/pyproject.toml", "/uv.lock", "/README.md", "/LICENSE", "/CHANGELOG.md"]
 
 [tool.ruff]
 target-version = "py311"

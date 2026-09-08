@@ -1,0 +1,406 @@
+[
+  {
+    "case": "image-desktop",
+    "source": "docs/evidence/m1/image/report.html",
+    "viewport": [
+      1440,
+      1100
+    ],
+    "scroll": 0,
+    "layout": {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 4193,
+      "images": [],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  },
+  {
+    "case": "video-desktop",
+    "source": "docs/evidence/m2/video-odd/report.html",
+    "viewport": [
+      1440,
+      1400
+    ],
+    "scroll": 0,
+    "layout": {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 4712,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  },
+  {
+    "case": "video-narrow",
+    "source": "docs/evidence/m2/video-odd/report.html",
+    "viewport": [
+      390,
+      1000
+    ],
+    "scroll": 0,
+    "layout": {
+      "width": 500,
+      "scrollWidth": 500,
+      "height": 6073,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  },
+  {
+    "case": "video-narrow-timeline",
+    "source": "docs/evidence/m2/video-odd/report.html",
+    "viewport": [
+      390,
+      1200
+    ],
+    "scroll": 1000,
+    "layout": {
+      "width": 500,
+      "scrollWidth": 500,
+      "height": 6073,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  },
+  {
+    "case": "comparison-desktop",
+    "source": "docs/evidence/m2/comparison/report.html",
+    "viewport": [
+      1440,
+      1400
+    ],
+    "scroll": 0,
+    "layout": {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 13119,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  },
+  {
+    "case": "comparison-narrow",
+    "source": "docs/evidence/m2/comparison/report.html",
+    "viewport": [
+      390,
+      1000
+    ],
+    "scroll": 0,
+    "layout": {
+      "width": 500,
+      "scrollWidth": 500,
+      "height": 21685,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "networkElements": 0
+    },
+    "screenshot_exists": true,
+    "chrome_exit": 0,
+    "terminated_after_capture": true
+  }
+]

@@ -1,32 +1,37 @@
 # Testing
 
 Use the canonical commands in [AGENTS.md](../AGENTS.md#developer-commands).
-The default pytest selection excludes `processor` and `live`; neither group has
-tests yet. Selecting an empty group is not integration evidence and exits 5.
-Do not treat the M0 standalone probe as M1/M2 processor correctness coverage.
+Default pytest is offline and excludes `processor`/`live`. The processor group
+requires an explicitly prepared, exact eight-file artifact directory. It never
+implicitly downloads: absent `MODALMETER_TEST_PROCESSOR_DIR` causes skips, which
+must not be described as processor validation.
 
-| Group | Present scope | What it cannot establish |
+| Group | Current evidence | Limit |
 | --- | --- | --- |
-| Offline unit/contract | CLI help/version/invalid future command, blocked heavy imports, finite numeric evidence, zero vs missing, provenance, JSON roundtrip and unsupported schema rejection | Model token accounting or media correctness |
-| Package smoke | Each actual wheel/sdist installed into its own temporary base venv; installed identity, entry point, `py.typed`, JSON load, no heavy dependency, dependency consistency | Processor or GPU support |
-| Processor | M1/M2 planned: independent pinned reference output, bounded synthetic fixtures, cached offline rerun | Server parity |
-| Protocol | M3 planned: local real HTTP/SSE mock server, failure handling, timing and bounded concurrency | A real vLLM engine or GPU measurements |
-| Live parity | M4 planned: actual endpoint/model/config/media tuple | Untested modalities, releases or other machines |
-| Telemetry/profiling | M5/M6 planned: real source/scope/units and instrumentation overhead | Guaranteed peaks or universal capacity |
+| Offline contracts | Schemas, malformed records, artifact integrity, CLI exits/import boundary, bounded sampling, report privacy/comparison, atomic persistence | No reference processor claim |
+| Processor integration | Actual image boundaries, attention-mask padding, native reference grids/IDs, video selection/padding, VFR/nonzero/repeated PTS, pixel budgets, invocation count and CPU guards | Exact pinned tuple; no serving parity |
+| Package smoke | Separate clean wheel/sdist installs, help/version, package data, stored inspection/compare HTML, missing heavy dependencies, dependency consistency | Base package only |
+| Protocol | M3 planned | Future HTTP/SSE tests will not prove GPU behavior |
+| Live parity | M4 planned | Needs owner endpoint/config; no live test performed |
 
-CI config runs base CPU checks on Linux Python 3.11/3.12 and a macOS 3.12 job
-with read-only contents permission and verified SHA-pinned actions. It has not run
-on GitHub until an authorized push/workflow run occurs. No GPU job, publication,
-secret-dependent PR workflow or processor download runs by default.
+Prepare explicitly, then run the offline processor group:
 
-The M0 evidence fixture is authored for this project under its MIT license and
-contains no media. The feasibility probe generates three solid-color frames in
-memory and a temporary lossless FFV1 video; neither private media nor weights are
-used. Future fixtures must cover image aspect/size boundaries and video odd/short,
-padding, noninteger FPS, VFR/nonzero origin, missing metadata, corruption and
-resource-limit outcomes. Tests must use observable reference behavior, not merely
-repeat the same implementation formula. Keep huge tensors/caches outside Git.
+```bash
+uv sync --locked --extra inspect
+uv run --locked --extra inspect modalmeter prepare --cache-dir .cache/modalmeter
+MODALMETER_TEST_PROCESSOR_DIR="$PWD/.cache/modalmeter/89644892e4d85e24eaac8bacfd4f463576704203" \
+  HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false \
+  uv run --locked --extra inspect pytest -m processor
+```
 
-Package smoke uses locked base dependency constraints but allows build-system
-downloads to install the sdist. Ordinary pytest runs need no network. Coverage is
-a diagnostic; no arbitrary percentage gate substitutes for meaningful behavior.
+Reference tests verify independently hardcoded artifact hashes and use unmodified
+AutoProcessor objects. Synthetic FFV1 media has known original RGB frame IDs and
+rational PTS, independently decoded against the generator provenance. A standalone
+M0 probe is historical feasibility, not acceptance coverage. See [examples](../examples/README.md)
+for MIT fixture provenance. No weights/private media are tracked.
+
+Hosted base CI targets Linux Python 3.11/3.12 and macOS 3.12 with read-only
+permissions and SHA-pinned actions. Hosted execution has not run without an
+authorized push. No GPU or publish job exists. Package smoke may fetch locked
+base/build dependencies; ordinary tests do not need network. Final local evidence,
+including actual counts and visual QA, lives in [M1](evidence/m1/) and [M2](evidence/m2/).

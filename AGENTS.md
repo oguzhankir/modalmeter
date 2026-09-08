@@ -82,8 +82,8 @@ and the sandbox cache override. This table is the canonical command set.
 | Help/version | `uv run --locked modalmeter --help` / `uv run --locked modalmeter --version` | Only implemented CLI surface |
 | Package build | `uv build --no-sources` | Wheel and sdist, no publish |
 | Clean package checks | `uv run --locked python scripts/package_smoke.py` | Independent wheel/sdist base installs; may download dependencies |
-| Processor integration | Not implemented until M1/M2 | Do not report an empty pytest selection as passed |
+| Processor integration | `MODALMETER_TEST_PROCESSOR_DIR=/absolute/prepared/revision uv run --locked --extra inspect pytest -m processor` | Prepare explicitly first; see docs/testing.md; skips are not verification |
 | M0 feasibility reproduction | See [probe instructions](docs/evidence/m0/README.md) | Explicit artifact download, then offline probe; not correctness coverage |
 
-HTTPX, stored HTML rendering, inspection, and live commands are future milestones.
-Do not add them merely to make this command table look complete.
+Inspection, report and comparison are implemented; use README.md for the working CPU quickstart.
+HTTPX endpoint/protocol work remains M3; live validation remains M4.

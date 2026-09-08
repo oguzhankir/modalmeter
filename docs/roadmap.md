@@ -6,9 +6,9 @@ owner acceptance. Allowed states: `planned`, `in_progress`,
 
 | Milestone | Dependency | Status | Gate |
 | --- | --- | --- | --- |
-| M0 Foundation and feasibility | Local CPU checkout | ready_for_owner_review | Actual checks and owner review |
-| M1 Image inspection | Accepted M0 + explicit continuation | planned | Reference processor counts and offline rerun |
-| M2 Video and reports | Accepted M1 | planned | PTS/sampling edges, portable report and visual QA |
+| M0 Foundation and feasibility | Local CPU checkout | accepted | Actual checks and owner review |
+| M1 Image inspection | Accepted M0 + explicit continuation | ready_for_owner_review | Reference processor counts and offline rerun |
+| M2 Video and reports | M1 implementation + authorized M1/M2 batch | ready_for_owner_review | PTS/sampling edges, portable report and visual QA |
 | M3 Endpoint protocol | Accepted M2 | planned | Deterministic real HTTP/SSE mock tests |
 | M4 Live comparisons | Accepted M3 + owner endpoint/GPU | planned | Actual backend/media parity and controlled evidence |
 | M5 Telemetry | Validated backend + real metrics source | planned | Units, scope and real capture |

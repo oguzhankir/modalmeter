@@ -1,0 +1,386 @@
+[
+  {
+    "case": "image-390",
+    "source": "docs/evidence/m1/image/report.html",
+    "source_sha256": "c95a024b551a286bef2269dba4c1b836b05922a0b75fd7041163453164c26a2f",
+    "viewport_override": {
+      "width": 390,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "method": "Chrome CDP Emulation.setDeviceMetricsOverride; source HTML and CSP unchanged; runtime image.loading=eager for bounded decode QA",
+    "layout": {
+      "width": 390,
+      "height": 1000,
+      "scrollWidth": 390,
+      "scrollHeight": 6454,
+      "scrollY": 0,
+      "images": [],
+      "externalReferences": [],
+      "csp": "default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    },
+    "screenshot": "image-390.png"
+  },
+  {
+    "case": "video-390",
+    "source": "docs/evidence/m2/video-odd/report.html",
+    "source_sha256": "3769520c7f42a4ed6556111b803d506ed1ae207c3a7ce1418d0fd317d8996f9c",
+    "viewport_override": {
+      "width": 390,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "method": "Chrome CDP Emulation.setDeviceMetricsOverride; source HTML and CSP unchanged; runtime image.loading=eager for bounded decode QA",
+    "layout": {
+      "width": 390,
+      "height": 1000,
+      "scrollWidth": 390,
+      "scrollHeight": 7619,
+      "scrollY": 0,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "externalReferences": [],
+      "csp": "default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    },
+    "screenshot": "video-390.png"
+  },
+  {
+    "case": "video-timeline-390",
+    "source": "docs/evidence/m2/video-odd/report.html",
+    "source_sha256": "3769520c7f42a4ed6556111b803d506ed1ae207c3a7ce1418d0fd317d8996f9c",
+    "viewport_override": {
+      "width": 390,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "method": "Chrome CDP Emulation.setDeviceMetricsOverride; source HTML and CSP unchanged; runtime image.loading=eager for bounded decode QA",
+    "layout": {
+      "width": 390,
+      "height": 1000,
+      "scrollWidth": 390,
+      "scrollHeight": 7619,
+      "scrollY": 1690,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "externalReferences": [],
+      "csp": "default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    },
+    "screenshot": "video-timeline-390.png"
+  },
+  {
+    "case": "comparison-390",
+    "source": "docs/evidence/m2/comparison/report.html",
+    "source_sha256": "dadb028f1bf877eab87e0e98b086dac010ef1af7648abcd697285d1f67c001eb",
+    "viewport_override": {
+      "width": 390,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "method": "Chrome CDP Emulation.setDeviceMetricsOverride; source HTML and CSP unchanged; runtime image.loading=eager for bounded decode QA",
+    "layout": {
+      "width": 390,
+      "height": 1000,
+      "scrollWidth": 390,
+      "scrollHeight": 18402,
+      "scrollY": 0,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "externalReferences": [],
+      "csp": "default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    },
+    "screenshot": "comparison-390.png"
+  },
+  {
+    "case": "comparison-desktop-cdp",
+    "source": "docs/evidence/m2/comparison/report.html",
+    "source_sha256": "dadb028f1bf877eab87e0e98b086dac010ef1af7648abcd697285d1f67c001eb",
+    "viewport_override": {
+      "width": 1440,
+      "height": 1400,
+      "deviceScaleFactor": 1
+    },
+    "method": "Chrome CDP Emulation.setDeviceMetricsOverride; source HTML and CSP unchanged; runtime image.loading=eager for bounded decode QA",
+    "layout": {
+      "width": 1440,
+      "height": 1400,
+      "scrollWidth": 1440,
+      "scrollHeight": 11366,
+      "scrollY": 0,
+      "images": [
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "loaded": true,
+          "width": 96,
+          "height": 64
+        }
+      ],
+      "externalReferences": [],
+      "csp": "default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"
+    },
+    "screenshot": "comparison-desktop-cdp.png"
+  }
+]

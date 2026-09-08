@@ -121,3 +121,21 @@ Before M2: verify bounded default/uniform selection, actual PTS vs processor lab
 short/VFR/nonzero-origin inputs and single-pass metadata capture. Before M3/M4:
 resolve server transport/release, usage and parity instrumentation. Before publishing:
 check PyPI name availability, dependency/media licenses and package contents again.
+
+## M1/M2 installed-source follow-up, 2026-09-08
+
+The same immutable Transformers source was re-read locally. Actual reference tests
+confirmed a single combined processor call can preserve video metadata with
+`return_tensors=None`; the M0 tensor-conversion failure requires no duplicate pass.
+Native video resize rejects a single frame before padding, requiring the explicit
+recorded adapter repair. Native timestamp text uses index/FPS and differs from
+source PTS for VFR/nonzero origins. Native pixel budgets can couple selected-frame
+count and per-frame resize. See [ADR 0003](decisions/0003-cpu-inspection.md) and
+[actual M2 comparison](evidence/m2/comparison/report.html).
+
+Reference-test construction also confirmed `_merge_kwargs` in the pinned
+`processing_utils.py` expects video controls consistently flat or consistently
+nested in `videos_kwargs`; mixing the two can ignore flat controls. Production
+uses the flat form consistently; independent override tests use the nested form
+consistently. The initial invalid reference invocation and corrected results are
+preserved in the processor test notes. No backend source claim is upgraded.

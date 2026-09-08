@@ -14,7 +14,8 @@ Verified local base setup:
 cd /Users/oguz/Desktop/modalmeter
 export PATH="/private/tmp/modalmeter-uv-tool/bin:$PATH"
 export UV_CACHE_DIR=/private/tmp/modalmeter-uv-cache
-uv sync --locked --python /opt/homebrew/bin/python3.12
+export UV_PYTHON=/opt/homebrew/bin/python3.12
+uv sync --locked
 uv run --locked modalmeter --help
 uv run --locked modalmeter --version
 ```
@@ -57,7 +58,7 @@ by explicitly setting the interpreter. Mixed-architecture wheels with the
 universal interpreter subsequently required a fresh managed ARM64 environment.
 See the preserved failure logs and final successful checks.
 
-The M0 feasibility environment is deliberately separate from `.venv`:
+The dedicated inspection environment is separate from the base-only `.venv`:
 
 ```bash
 UV_PROJECT_ENVIRONMENT=.venv-spike uv sync --locked --extra inspect --python /opt/homebrew/bin/python3.12
@@ -70,7 +71,9 @@ a shell `ffmpeg` executable. The probe uses the PyAV API, no executable. uv sele
 CPU Torch wheels on Linux via an explicit index; plain pip does not inherit that
 uv setting. See the ADR before installing the extra on another platform.
 
-Reproduce the [probe](evidence/m0/README.md) only with its listed small immutable
-artifacts. There is no M0 media inspection command. Initial download access and
-Git metadata writes required sandbox escalation; authorized local work proceeded
-without changing global configuration or publishing anything.
+Run the implemented [CPU quickstart](../README.md) with `UV_PROJECT_ENVIRONMENT=.venv-spike`
+and `UV_PYTHON=/opt/homebrew/bin/python3.12` when preserving this separate environment.
+For stored report commands use `.venv/bin/modalmeter` to prove the base-only boundary.
+The historical [M0 probe](evidence/m0/README.md) is separate feasibility evidence.
+Dependency/artifact downloads and Git metadata writes required sandbox escalation;
+local M1/M2 work uses no global configuration change, push, or publication.

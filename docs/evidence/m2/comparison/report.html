@@ -1,0 +1,1472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <title>ModalMeter · How input choices change the prompt</title>
+  <style>
+    :root{color-scheme:light;--ink:#142235;--muted:#546477;--line:#dce3ec;--paper:#fff;--blue:#075bd8;--pale:#edf4ff;--green:#126849;--amber:#855100}
+    *{box-sizing:border-box}body{margin:0;background:#f4f6f9;color:var(--ink);font:15px/1.6 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1180px;margin:auto;padding:30px 32px 64px}a{color:var(--blue)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(30px,5vw,46px);line-height:1.13;letter-spacing:-.04em;margin-bottom:14px}h2{font-size:22px;letter-spacing:-.025em;margin-bottom:16px}h3{font-size:15px;margin-bottom:8px}p{margin-bottom:12px}.muted{color:var(--muted)}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:var(--blue);margin-bottom:10px}.brand{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:35px}.wordmark{font-size:21px;letter-spacing:-.05em;font-weight:800}.brand small{font-size:12px;color:var(--muted)}.hero{max-width:850px;margin-bottom:26px}.pill,.evidence{display:inline-block;border-radius:5px;font-size:11px;font-weight:650;letter-spacing:.01em;padding:3px 7px;background:var(--pale);color:#154c95;vertical-align:middle}.evidence.measured{color:var(--green);background:#e7f5ee}.evidence.derived{color:#65459b;background:#f0eafa}.evidence.unavailable{color:var(--muted);background:#edf0f4}.evidence.estimated{color:var(--amber);background:#fff3d9}.badge-row{display:flex;gap:8px;flex-wrap:wrap}.section{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:20px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:16px}.section-head h2{margin:0}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:19px}.card.highlight{background:var(--blue);color:white;border-color:var(--blue)}.card-label{font-size:12px;line-height:1.4;min-height:34px;color:var(--muted)}.highlight .card-label,.highlight .card-note{color:#e0edff}.card-value{font-size:35px;line-height:1.2;font-weight:750;letter-spacing:-.04em;margin:10px 0 8px}.card-note{font-size:11px;color:var(--muted);line-height:1.45}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}.callout{border-left:3px solid var(--blue);padding:10px 16px;background:var(--pale);font-size:13px;margin:16px 0}.callout.caution{background:#fff8e8;border-color:#bd8b21}.callout p:last-child{margin-bottom:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:650;border-bottom:1px solid var(--line);padding:10px 12px 10px 0}td{padding:13px 12px 13px 0;border-bottom:1px solid #edf0f4;vertical-align:top}tr:last-child td{border-bottom:0}.metric-name{font-weight:650;display:block}.metric-definition{font-size:12px;line-height:1.5;color:var(--muted);display:block;margin-top:4px}.metric-value{font-size:19px;letter-spacing:-.025em;font-weight:700;white-space:nowrap}.unit{font-size:11px;color:var(--muted);white-space:normal;display:block;font-weight:400}.facts{display:grid;grid-template-columns:minmax(100px,.65fr) minmax(0,1.35fr);gap:10px 16px;margin:0;font-size:13px}.facts dt{color:var(--muted)}.facts dd{margin:0;overflow-wrap:anywhere}.timeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:18px}.frame{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0}.frame-media{background:#edf1f6;height:132px;display:flex;justify-content:center;align-items:center}.frame-media img{width:100%;height:100%;object-fit:contain}.frame-placeholder{font-size:11px;color:var(--muted)}figcaption{padding:11px;font-size:11px;color:var(--muted);overflow-wrap:anywhere}figcaption strong{color:var(--ink);display:block;font-size:12px;margin-bottom:4px}.stack{display:flex;height:13px;border-radius:4px;overflow:hidden;background:#edf0f4;margin:18px 0 10px}.stack .visual{background:var(--blue)}.stack .nonvisual{background:#abbed7}.legend{display:flex;flex-wrap:wrap;gap:20px;font-size:12px;color:var(--muted)}.swatch{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--blue);margin-right:5px}.swatch.nonvisual{background:#abbed7}details{margin-top:14px}summary{cursor:pointer;font-size:13px;color:var(--blue);font-weight:600}pre,code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border:1px solid var(--line);border-radius:6px;background:#f7f9fc;line-height:1.7;margin:12px 0 0}code{overflow-wrap:anywhere}.run-divider{margin:44px 0 18px}.run-divider h2{font-size:26px}.run-id{font-size:11px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.no-wrap{white-space:nowrap}.bullets{padding-left:20px;margin-bottom:0;font-size:13px}.bullets li{margin:7px 0;overflow-wrap:anywhere}.footer{margin-top:30px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}.empty{font-size:13px;color:var(--muted);padding:12px 0}.privacy{font-size:12px;color:var(--muted);margin-bottom:0}.comparison-table th,.comparison-table td{min-width:130px;overflow-wrap:anywhere}.diff-field{max-width:210px;overflow-wrap:anywhere}button,input{font:inherit}
+    .table-wrap{max-width:100%;min-width:0}.diff-table{min-width:880px;table-layout:fixed}.diff-table th,.diff-table td{overflow-wrap:anywhere}.diff-table .diff-field{max-width:none}.diff-value{margin:0}.diff-value summary{font-size:12px}.diff-value pre{max-height:320px;overflow:auto;padding:12px;margin-top:10px}.diff-scalar{white-space:pre-wrap}
+    @media(max-width:760px){main{padding:18px 16px 40px}.brand{margin-bottom:26px;padding-bottom:18px;align-items:flex-start}.brand small{max-width:145px;text-align:right}.section{padding:18px 15px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:15px}.card-value{font-size:30px}.two-col{grid-template-columns:1fr;gap:24px}.section-head{display:block}.section-head .muted{margin-top:6px;display:block}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.facts{grid-template-columns:minmax(85px,.7fr) minmax(0,1.3fr);gap:9px}.metric-value{font-size:16px}.evidence{font-size:10px;padding:2px 5px}.hero{margin-bottom:18px}}
+    @media print{body{background:white}main{max-width:none;padding:0}.section,.card{break-inside:avoid}.frame{break-inside:avoid}.brand{margin-bottom:18px}.section{margin-top:14px}details>pre{display:block}.table-wrap{overflow:visible}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="brand"><div class="wordmark">ModalMeter<span style="color:var(--blue)">.</span></div><small>Offline inspection report<br>CPU input preparation · 0.1.0.dev0</small></header>
+  <div class="hero">
+    <div class="eyebrow">Controlled input comparison</div>
+    <h1>How input choices change the prompt</h1>
+    <p class="muted">2 recorded inspections, one explicit baseline, and every effective change visible.</p>
+    <div class="badge-row"><span class="pill">Offline · self-contained</span><span class="pill">Media included by request</span><span class="pill">Serving parity unverified</span></div>
+  </div>
+  <section class="section" aria-label="Comparison summary">
+    <div class="section-head"><h2>Compare the inputs</h2><span class="pill">Compatible baseline</span></div>
+    <p class="muted">The first run is the explicit baseline. Deltas describe processed inputs; they do not establish latency, memory, or answer quality.</p>
+    <div class="table-wrap"><table class="comparison-table"><thead><tr><th>Run</th><th>Selected / processed</th><th>Visual placeholders</th><th>Prompt positions</th><th>Placeholder delta</th></tr></thead><tbody>
+<tr><td><strong>Baseline</strong><span class="metric-definition">bae3efca</span></td><td>8 / 8</td><td>8</td><td>52</td><td>0</td></tr><tr><td><strong>Variant 1</strong><span class="metric-definition">c7ca43ca</span></td><td>16 / 16</td><td>8</td><td>84</td><td>0</td></tr>    </tbody></table></div>
+<div class="callout caution"><strong>Interpret the changes</strong><ul class="bullets"><li>Inspection-only comparison: serving latency, GPU memory, and answer quality are unavailable.</li><li>Server configuration and media transport are unknown; serving parity is not established.</li><li>Run c7ca43ca-d9eb-4fc7-a488-bde8a970c8ae: frame selection and processed dimensions both changed; the token delta reflects coupled sampling and resize effects.</li></ul></div>    <h3 style="margin-top:22px">Readable configuration differences</h3>
+    <div class="table-wrap"><table class="diff-table">
+      <colgroup><col style="width:220px"><col><col><col style="width:140px"></colgroup>
+      <thead><tr><th>Run / field</th><th>Baseline</th><th>Variant</th><th>Interpretation</th></tr></thead>
+      <tbody>        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.grid_thw</code></td>
+          <td><code class="diff-scalar">[
+  4,
+  2,
+  4
+]</code></td>
+          <td><code class="diff-scalar">[
+  8,
+  2,
+  2
+]</code></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.group_timestamp_labels</code></td>
+          <td><code class="diff-scalar">[
+  &#34;&lt;0.2 seconds&gt;&#34;,
+  &#34;&lt;1.2 seconds&gt;&#34;,
+  &#34;&lt;2.5 seconds&gt;&#34;,
+  &#34;&lt;3.5 seconds&gt;&#34;
+]</code></td>
+          <td><details class="diff-value"><summary>View full value</summary><pre>[
+  &#34;&lt;0.1 seconds&gt;&#34;,
+  &#34;&lt;0.6 seconds&gt;&#34;,
+  &#34;&lt;1.1 seconds&gt;&#34;,
+  &#34;&lt;1.6 seconds&gt;&#34;,
+  &#34;&lt;2.1 seconds&gt;&#34;,
+  &#34;&lt;2.6 seconds&gt;&#34;,
+  &#34;&lt;3.1 seconds&gt;&#34;,
+  &#34;&lt;3.6 seconds&gt;&#34;
+]</pre></details></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.processed_frame_count</code></td>
+          <td><code class="diff-scalar">8</code></td>
+          <td><code class="diff-scalar">16</code></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.processed_frames</code></td>
+          <td><details class="diff-value"><summary>Show frame mapping</summary><pre>[
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 0,
+    &#34;selected_position&#34;: 0,
+    &#34;source_ordinal&#34;: 0
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 1,
+    &#34;selected_position&#34;: 1,
+    &#34;source_ordinal&#34;: 2
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 2,
+    &#34;selected_position&#34;: 2,
+    &#34;source_ordinal&#34;: 4
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 3,
+    &#34;selected_position&#34;: 3,
+    &#34;source_ordinal&#34;: 6
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 4,
+    &#34;selected_position&#34;: 4,
+    &#34;source_ordinal&#34;: 9
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 5,
+    &#34;selected_position&#34;: 5,
+    &#34;source_ordinal&#34;: 11
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 6,
+    &#34;selected_position&#34;: 6,
+    &#34;source_ordinal&#34;: 13
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 7,
+    &#34;selected_position&#34;: 7,
+    &#34;source_ordinal&#34;: 15
+  }
+]</pre></details></td>
+          <td><details class="diff-value"><summary>Show frame mapping</summary><pre>[
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 0,
+    &#34;selected_position&#34;: 0,
+    &#34;source_ordinal&#34;: 0
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 1,
+    &#34;selected_position&#34;: 1,
+    &#34;source_ordinal&#34;: 1
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 2,
+    &#34;selected_position&#34;: 2,
+    &#34;source_ordinal&#34;: 2
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 3,
+    &#34;selected_position&#34;: 3,
+    &#34;source_ordinal&#34;: 3
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 4,
+    &#34;selected_position&#34;: 4,
+    &#34;source_ordinal&#34;: 4
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 5,
+    &#34;selected_position&#34;: 5,
+    &#34;source_ordinal&#34;: 5
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 6,
+    &#34;selected_position&#34;: 6,
+    &#34;source_ordinal&#34;: 6
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 7,
+    &#34;selected_position&#34;: 7,
+    &#34;source_ordinal&#34;: 7
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 8,
+    &#34;selected_position&#34;: 8,
+    &#34;source_ordinal&#34;: 8
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 9,
+    &#34;selected_position&#34;: 9,
+    &#34;source_ordinal&#34;: 9
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 10,
+    &#34;selected_position&#34;: 10,
+    &#34;source_ordinal&#34;: 10
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 11,
+    &#34;selected_position&#34;: 11,
+    &#34;source_ordinal&#34;: 11
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 12,
+    &#34;selected_position&#34;: 12,
+    &#34;source_ordinal&#34;: 12
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 13,
+    &#34;selected_position&#34;: 13,
+    &#34;source_ordinal&#34;: 13
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 14,
+    &#34;selected_position&#34;: 14,
+    &#34;source_ordinal&#34;: 14
+  },
+  {
+    &#34;duplicated&#34;: false,
+    &#34;duplication_reason&#34;: null,
+    &#34;position&#34;: 15,
+    &#34;selected_position&#34;: 15,
+    &#34;source_ordinal&#34;: 15
+  }
+]</pre></details></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.processed_width</code></td>
+          <td><code class="diff-scalar">64</code></td>
+          <td><code class="diff-scalar">32</code></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.selected_frame_count</code></td>
+          <td><code class="diff-scalar">8</code></td>
+          <td><code class="diff-scalar">16</code></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>effective.selected_frames</code></td>
+          <td><details class="diff-value"><summary>Show frame mapping</summary><pre>[
+  {
+    &#34;ordinal&#34;: 0,
+    &#34;processor_timestamp_seconds&#34;: 0.0,
+    &#34;pts&#34;: 0,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 2,
+    &#34;processor_timestamp_seconds&#34;: 0.5,
+    &#34;pts&#34;: 500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 4,
+    &#34;processor_timestamp_seconds&#34;: 1.0,
+    &#34;pts&#34;: 1000,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 6,
+    &#34;processor_timestamp_seconds&#34;: 1.5,
+    &#34;pts&#34;: 1500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 9,
+    &#34;processor_timestamp_seconds&#34;: 2.25,
+    &#34;pts&#34;: 2250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 11,
+    &#34;processor_timestamp_seconds&#34;: 2.75,
+    &#34;pts&#34;: 2750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 13,
+    &#34;processor_timestamp_seconds&#34;: 3.25,
+    &#34;pts&#34;: 3250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 15,
+    &#34;processor_timestamp_seconds&#34;: 3.75,
+    &#34;pts&#34;: 3750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  }
+]</pre></details></td>
+          <td><details class="diff-value"><summary>Show frame mapping</summary><pre>[
+  {
+    &#34;ordinal&#34;: 0,
+    &#34;processor_timestamp_seconds&#34;: 0.0,
+    &#34;pts&#34;: 0,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 1,
+    &#34;processor_timestamp_seconds&#34;: 0.25,
+    &#34;pts&#34;: 250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 2,
+    &#34;processor_timestamp_seconds&#34;: 0.5,
+    &#34;pts&#34;: 500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 3,
+    &#34;processor_timestamp_seconds&#34;: 0.75,
+    &#34;pts&#34;: 750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 0.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 4,
+    &#34;processor_timestamp_seconds&#34;: 1.0,
+    &#34;pts&#34;: 1000,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 5,
+    &#34;processor_timestamp_seconds&#34;: 1.25,
+    &#34;pts&#34;: 1250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 6,
+    &#34;processor_timestamp_seconds&#34;: 1.5,
+    &#34;pts&#34;: 1500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 7,
+    &#34;processor_timestamp_seconds&#34;: 1.75,
+    &#34;pts&#34;: 1750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 1.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 8,
+    &#34;processor_timestamp_seconds&#34;: 2.0,
+    &#34;pts&#34;: 2000,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 9,
+    &#34;processor_timestamp_seconds&#34;: 2.25,
+    &#34;pts&#34;: 2250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 10,
+    &#34;processor_timestamp_seconds&#34;: 2.5,
+    &#34;pts&#34;: 2500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 11,
+    &#34;processor_timestamp_seconds&#34;: 2.75,
+    &#34;pts&#34;: 2750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 2.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 12,
+    &#34;processor_timestamp_seconds&#34;: 3.0,
+    &#34;pts&#34;: 3000,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.0,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 13,
+    &#34;processor_timestamp_seconds&#34;: 3.25,
+    &#34;pts&#34;: 3250,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.25,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 14,
+    &#34;processor_timestamp_seconds&#34;: 3.5,
+    &#34;pts&#34;: 3500,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.5,
+    &#34;timestamp_unavailable_reason&#34;: null
+  },
+  {
+    &#34;ordinal&#34;: 15,
+    &#34;processor_timestamp_seconds&#34;: 3.75,
+    &#34;pts&#34;: 3750,
+    &#34;time_base_denominator&#34;: 1000,
+    &#34;time_base_numerator&#34;: 1,
+    &#34;timestamp_seconds&#34;: 3.75,
+    &#34;timestamp_unavailable_reason&#34;: null
+  }
+]</pre></details></td>
+          <td>effective</td>
+        </tr>
+        <tr>
+          <td class="diff-field"><span class="metric-definition">c7ca43ca</span><code>requested.frames</code></td>
+          <td><code class="diff-scalar">8</code></td>
+          <td><code class="diff-scalar">16</code></td>
+          <td>intentional</td>
+        </tr>
+</tbody>
+    </table></div>
+  </section>
+  <article aria-label="video inspection 1">
+<div class="run-divider"><div class="eyebrow">Baseline</div><h2>Video input · 2e6f7df7d16c</h2></div>    <div class="cards">
+      <div class="card highlight"><div class="card-label">Visual embedding placeholders</div><div class="card-value">8</div><div class="card-note">Decoder positions after spatial merging · observed</div></div>
+      <div class="card"><div class="card-label">Complete processed prompt</div><div class="card-value">52</div><div class="card-note">Non-padding positions · observed</div></div>
+      <div class="card"><div class="card-label">Vision encoder positions</div><div class="card-value">32</div><div class="card-note">Grid positions before spatial merging · observed</div></div>
+      <div class="card"><div class="card-label">Selected / processed frames</div><div class="card-value">8 / 8</div><div class="card-note">0 repeated or temporally padded positions</div></div>
+    </div>
+    <section class="section">
+      <div class="section-head"><h2>What the processor received</h2><span class="pill">video</span></div>
+      <div class="two-col">
+        <dl class="facts"><dt>Input</dt><dd>Video · 2e6f7df7d16c</dd><dt>Source dimensions</dt><dd>96 × 64 px</dd><dt>After orientation</dt><dd>96 × 64 px</dd><dt>Processed dimensions</dt><dd>64 × 32 px</dd><dt>Source size</dt><dd>61,202 bytes</dd><dt>Transforms</dt><dd>PyAV decoded selected frames to RGB24; no decoder resize.</dd><dt>Source duration</dt><dd>Unavailable — Video stream duration metadata is unavailable.</dd><dt>Decoded / reported frames</dt><dd>16 / Unavailable</dd><dt>Average FPS</dt><dd>4</dd><dt>Timestamp policy</dt><dd>Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.</dd></dl>
+        <dl class="facts"><dt>Model</dt><dd>Qwen/Qwen3-VL-2B-Instruct</dd><dt>Immutable revision</dt><dd>89644892e4d85e24eaac8bacfd4f463576704203</dd><dt>Adapter</dt><dd>qwen3-vl-native/1</dd><dt>Grid [T, H, W]</dt><dd>[4, 2, 4]</dd><dt>Processor check</dt><dd>processor_verified</dd><dt>Server parity</dt><dd>server_parity_unverified</dd></dl>
+      </div>
+      <div class="callout"><p><strong>Sampling: uniform · requested: 8 · selected: 8 · processed: 8</strong></p><p>Decoded presentation timestamps preserve the source timeline. Processor timestamps and grouped prompt labels may use frame index / FPS; they are separate observations.</p></div>
+      <div class="section-head" style="margin-top:24px"><h3>Selected-frame timeline</h3><span class="muted" style="font-size:12px">Original aspect ratios preserved</span></div>
+      <div class="timeline"><figure class="frame"><div class="frame-media"><img alt="Selected video frame 1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAuklEQVR4nO3WMQqDUBRFwRfUdbj/XaYJv0o88NvMYKXdwQf3NTPH9+f2/pg55xoeCBQECgIFgYJAQaBwznX/+OT9J1A1/G8CBYGCQEGgIFAQKNhBsfv8QUGgIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAs2zNxSwDtf6jWgIAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 1 · source #0</strong><div>Source PTS: 0 s</div><div>Exact: 0 × 1/1000 s</div><div>Processor: 0 s</div><div>Processed positions: 0</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwHxVAedZKgi4AnXcqMHNnZk1f6l8fzfsx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXtcPEBUIlK+mAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 2 · source #2</strong><div>Source PTS: 0.5 s</div><div>Exact: 500 × 1/1000 s</div><div>Processor: 0.5 s</div><div>Processed positions: 1</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwQ5VAexZGgi4AnXcqMHNnZk1f6l+f9ccx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXldFEFMo/Ve0AAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 3 · source #4</strong><div>Source PTS: 1 s</div><div>Exact: 1000 × 1/1000 s</div><div>Processor: 1 s</div><div>Processed positions: 2</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUVAEyTuP6E4KiBBF4GfdCkzcmRnT17pXx6v53Xm23N4f525zX04IVAQKAgUBAoCBYHCbe7Hj0/efwJVw/8mUBAoCBQECgIFgYIdFLvPHxQECgIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgIFCwgxY7aIsTCwIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgINCcewPWbBCRR3PK2AAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 4 · source #6</strong><div>Source PTS: 1.5 s</div><div>Exact: 1500 × 1/1000 s</div><div>Processor: 1.5 s</div><div>Processed positions: 3</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbh8iqMJEnQR8KRLmZEjO3vySv/2eJ73mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsB9pIQbsy8V/wAAAAASUVORK5CYII=" loading="lazy"></div><figcaption><strong>Selection 5 · source #9</strong><div>Source PTS: 2.25 s</div><div>Exact: 2250 × 1/1000 s</div><div>Processor: 2.25 s</div><div>Processed positions: 4</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbgUaqRjEnQR8KRLmZEjO3vySv92Ph/3mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsBM5APrDQejk4AAAAASUVORK5CYII=" loading="lazy"></div><figcaption><strong>Selection 6 · source #11</strong><div>Source PTS: 2.75 s</div><div>Exact: 2750 × 1/1000 s</div><div>Processor: 2.75 s</div><div>Processed positions: 5</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 7" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwGBVEF3ZOgi4AnXcqMHNnZk1f6l8f9ecx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXrO3D+rewNSKAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 7 · source #13</strong><div>Source PTS: 3.25 s</div><div>Exact: 3250 × 1/1000 s</div><div>Processor: 3.25 s</div><div>Processed positions: 6</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 8" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUWGOtx/TAUUQi8k6CLgSZcyI0d29uSV/uXxvB8zn57T+2PmOrfhB4GCQEGgIFAQKAgUrnM7v3zy/h2oGv43gYJAQaAgUBAoCBTsoNh9/qAgUBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYGCHbTYQVucWBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYHmtxd2JREon0tAMAAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 8 · source #15</strong><div>Source PTS: 3.75 s</div><div>Exact: 3750 × 1/1000 s</div><div>Processor: 3.75 s</div><div>Processed positions: 7</div></figcaption></figure></div>
+    </section>
+    <section class="section">
+      <h2>Token accounting</h2>
+      <p class="muted">Encoder grid positions, visual placeholders, and complete prompt positions describe different stages. The residual includes chat-template, timestamp, and structural overhead; it is not a user-text token count.</p>
+<div class="stack" role="img" aria-label="8 visual placeholders within 52 non-padding prompt positions"><div class="visual" style="width:15.38%"></div><div class="nonvisual" style="width:84.62%"></div></div><div class="legend"><span><i class="swatch"></i>Visual placeholder positions</span><span><i class="swatch nonvisual"></i>Nonvisual residual positions</span></div>      <div class="table-wrap"><table><thead><tr><th>Quantity / definition</th><th>Value</th><th>Evidence</th></tr></thead><tbody><tr><td><span class="metric-name">Vision encoder grid positions</span><span class="metric-definition">Read the actual emitted patch tensor row count (shape[0]).</span></td><td><span class="metric-value">32</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Visual embedding placeholder positions</span><span class="metric-definition">Count token ID 151656 at active attention-mask positions.</span></td><td><span class="metric-value">8</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Grid-derived visual positions</span><span class="metric-definition">grid_t * grid_h * grid_w / merge_size^2; checked against placeholder IDs.</span></td><td><span class="metric-value">8</span><span class="unit">positions</span></td><td><span class="evidence derived">derived</span></td></tr><tr><td><span class="metric-name">Complete non-padding processed prompt</span><span class="metric-definition">Sum non-padding positions.</span></td><td><span class="metric-value">52</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Nonvisual prompt residual</span><span class="metric-definition">Non-padding prompt positions minus visual placeholder positions; includes chat template, timestamps and structural tokens, not just user text.</span></td><td><span class="metric-value">44</span><span class="unit">positions</span></td><td><span class="evidence derived">derived</span></td></tr><tr><td><span class="metric-name">Vision boundary positions</span><span class="metric-definition">Count known vision-start and vision-end token IDs at active positions.</span></td><td><span class="metric-value">8</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Video timestamp positions</span><span class="metric-definition">not captured</span><span class="metric-definition">Timestamp tokens are not isolated; included in the nonvisual residual.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">positions</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Isolated user-text positions</span><span class="metric-definition">not captured</span><span class="metric-definition">User text is not isolated from template/structure; use the nonvisual residual.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">positions</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Server-reported prompt usage</span><span class="metric-definition">not captured</span><span class="metric-definition">No serving endpoint was contacted.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">tokens</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Server-reported completion usage</span><span class="metric-definition">not captured</span><span class="metric-definition">No serving endpoint was contacted.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">tokens</span></td><td><span class="evidence unavailable">unavailable</span></td></tr></tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Measured preparation and unavailable serving data</h2>
+      <p class="muted">Local preparation timings, when captured, measure CPU-side work. No serving request, model generation, GPU observation, or quality evaluation is part of this inspection.</p>
+      <div class="table-wrap"><table><thead><tr><th>Quantity / scope</th><th>Value</th><th>Evidence</th></tr></thead><tbody><tr><td><span class="metric-name">Artifact preparation ms</span><span class="metric-definition">Resolve/download and hash-check artifacts.</span></td><td><span class="metric-value">9.298</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Processor load ms</span><span class="metric-definition">Load pinned processor/tokenizer on CPU.</span></td><td><span class="metric-value">3,049.14</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Media preparation ms</span><span class="metric-definition">Hash, decode, select frames, transform EXIF/RGB and optionally create thumbnails.</span></td><td><span class="metric-value">26.043</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Cpu processor ms</span><span class="metric-definition">Apply chat template and one native CPU processor call, including tensor preparation.</span></td><td><span class="metric-value">15.375</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Workflow ms</span><span class="metric-definition">API entry through accounting; excludes JSON/HTML serialization and output writes.</span></td><td><span class="metric-value">3,103.775</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Time to first output ms</span><span class="metric-definition">No serving request was performed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">End to end server ms</span><span class="metric-definition">No serving request was performed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Gpu memory bytes</span><span class="metric-definition">No GPU or serving-host telemetry was collected.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">bytes</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Vision encoder ms</span><span class="metric-definition">No model/vision encoder was loaded.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Answer quality</span><span class="metric-definition">No model output or task-quality evaluation was produced.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">score</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Serving latency</span><span class="metric-definition">No serving endpoint request was made.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Vision encoder execution time</span><span class="metric-definition">No model forward pass was executed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">GPU memory</span><span class="metric-definition">No device or server memory measurement was captured.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">bytes</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Answer quality</span><span class="metric-definition">No model answer or task-specific evaluation exists.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">evaluation</span></td><td><span class="evidence unavailable">unavailable</span></td></tr></tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Evidence, provenance, and limitations</h2>
+      <dl class="facts"><dt>Run ID</dt><dd>bae3efca-0756-49f0-863f-edf76cf0d22e</dd><dt>Created</dt><dd>2026-09-08T08:59:17.733677+00:00</dd><dt>Schema / tool</dt><dd>1.0 / 0.1.0.dev0</dd><dt>Source SHA-256</dt><dd>2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1</dd><dt>Prompt SHA-256</dt><dd>3bcd095e1d6b4187ce9a19eaa6130475a84289ff0fd63ce0c44211dd285a6d55</dd><dt>Template SHA-256</dt><dd>3636d0f0bd6bef02654cdffdc447b79cb2cef8ab02cc75267345946291a489e4</dd><dt>Processor evidence</dt><dd>Pinned adapter compared with unmodified CPU processor in tests/test_processor.py; see docs/evidence/m1 and docs/evidence/m2 for exact cases and limits. This run also compares emitted grid counts with actual active placeholder IDs.</dd><dt>Server parity evidence</dt><dd>No live serving endpoint was tested.</dd></dl>
+<div class="callout caution"><strong>Interpretation limits</strong><ul class="bullets"><li>Decoder runtime is checked between frames; native codec calls cannot be interrupted.</li><li>Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.</li><li>Container frame count is unavailable; source_frame_count is the complete decoded count.</li><li>Timestamp token positions are not isolated; timestamp text and boundaries are included in the nonvisual prompt residual. Native labels use index/FPS, not PTS.</li><li>Video stream duration metadata is unavailable.</li></ul></div>      <details><summary>Effective settings and dependency versions</summary><pre>{
+  &#34;decoder_versions&#34;: {
+    &#34;FFmpeg libavcodec&#34;: &#34;62.11.100&#34;,
+    &#34;FFmpeg libavdevice&#34;: &#34;62.1.100&#34;,
+    &#34;FFmpeg libavfilter&#34;: &#34;11.4.100&#34;,
+    &#34;FFmpeg libavformat&#34;: &#34;62.3.100&#34;,
+    &#34;FFmpeg libavutil&#34;: &#34;60.8.100&#34;,
+    &#34;FFmpeg libswresample&#34;: &#34;6.1.100&#34;,
+    &#34;FFmpeg libswscale&#34;: &#34;9.1.100&#34;,
+    &#34;PyAV&#34;: &#34;16.1.0&#34;
+  },
+  &#34;dependency_versions&#34;: {
+    &#34;av&#34;: &#34;16.1.0&#34;,
+    &#34;huggingface-hub&#34;: &#34;0.36.2&#34;,
+    &#34;numpy&#34;: &#34;2.5.3&#34;,
+    &#34;pillow&#34;: &#34;12.0.0&#34;,
+    &#34;tokenizers&#34;: &#34;0.22.2&#34;,
+    &#34;torch&#34;: &#34;2.9.1&#34;,
+    &#34;torchvision&#34;: &#34;0.24.1&#34;,
+    &#34;transformers&#34;: &#34;4.57.6&#34;
+  },
+  &#34;effective_settings&#34;: {
+    &#34;device&#34;: &#34;cpu&#34;,
+    &#34;do_convert_rgb&#34;: true,
+    &#34;do_normalize&#34;: true,
+    &#34;do_rescale&#34;: true,
+    &#34;do_resize&#34;: true,
+    &#34;do_sample_frames&#34;: false,
+    &#34;image_mean&#34;: [
+      0.5,
+      0.5,
+      0.5
+    ],
+    &#34;image_std&#34;: [
+      0.5,
+      0.5,
+      0.5
+    ],
+    &#34;merge_size&#34;: 2,
+    &#34;native_default_fps&#34;: 2,
+    &#34;native_max_frames&#34;: 768,
+    &#34;native_min_frames&#34;: 4,
+    &#34;patch_size&#34;: 16,
+    &#34;processor_class&#34;: &#34;Qwen3VLVideoProcessor&#34;,
+    &#34;resample&#34;: 3,
+    &#34;rescale_factor&#34;: 0.00392156862745098,
+    &#34;sampling_owner&#34;: &#34;ModalMeter: native default indices or uniform PTS&#34;,
+    &#34;size&#34;: {
+      &#34;longest_edge&#34;: 24576,
+      &#34;shortest_edge&#34;: 4096
+    },
+    &#34;temporal_patch_size&#34;: 2,
+    &#34;timestamp_basis&#34;: &#34;ordinal / nominal FPS; native grouped/rounded labels&#34;
+  },
+  &#34;processor_artifact_sha256&#34;: {
+    &#34;chat_template.json&#34;: &#34;6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4&#34;,
+    &#34;config.json&#34;: &#34;bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b&#34;,
+    &#34;merges.txt&#34;: &#34;599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3&#34;,
+    &#34;preprocessor_config.json&#34;: &#34;27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516&#34;,
+    &#34;tokenizer.json&#34;: &#34;a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7&#34;,
+    &#34;tokenizer_config.json&#34;: &#34;c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399&#34;,
+    &#34;video_preprocessor_config.json&#34;: &#34;7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13&#34;,
+    &#34;vocab.json&#34;: &#34;ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910&#34;
+  },
+  &#34;requested_settings&#34;: {
+    &#34;frames&#34;: 8,
+    &#34;max_decode_seconds&#34;: 30.0,
+    &#34;max_decoded_bytes&#34;: 268435456,
+    &#34;max_decoded_frames&#34;: 10000,
+    &#34;max_file_bytes&#34;: 268435456,
+    &#34;max_frames&#34;: 128,
+    &#34;max_pixels&#34;: 16777216,
+    &#34;max_prompt_bytes&#34;: 16384,
+    &#34;max_tensor_bytes&#34;: 268435456,
+    &#34;pixel_budget&#34;: 24576,
+    &#34;sampling&#34;: &#34;uniform&#34;
+  },
+  &#34;runtime&#34;: {
+    &#34;device&#34;: &#34;cpu&#34;,
+    &#34;machine&#34;: &#34;arm64&#34;,
+    &#34;os_version&#34;: &#34;26.6.2&#34;,
+    &#34;python&#34;: &#34;3.12.11&#34;,
+    &#34;system&#34;: &#34;Darwin&#34;
+  }
+}</pre></details>
+      <details><summary>Frame manifest, grid, and accounting evidence</summary><pre>{
+  &#34;compatibility&#34;: {
+    &#34;modality&#34;: &#34;video&#34;,
+    &#34;processor_evidence&#34;: &#34;Pinned adapter compared with unmodified CPU processor in tests/test_processor.py; see docs/evidence/m1 and docs/evidence/m2 for exact cases and limits. This run also compares emitted grid counts with actual active placeholder IDs.&#34;,
+    &#34;processor_verification&#34;: &#34;processor_verified&#34;,
+    &#34;server_parity&#34;: &#34;server_parity_unverified&#34;,
+    &#34;server_parity_reason&#34;: &#34;No live serving endpoint was tested.&#34;
+  },
+  &#34;grid_thw&#34;: [
+    4,
+    2,
+    4
+  ],
+  &#34;group_timestamp_labels&#34;: [
+    &#34;&lt;0.2 seconds&gt;&#34;,
+    &#34;&lt;1.2 seconds&gt;&#34;,
+    &#34;&lt;2.5 seconds&gt;&#34;,
+    &#34;&lt;3.5 seconds&gt;&#34;
+  ],
+  &#34;manifest&#34;: {
+    &#34;average_fps&#34;: 4.0,
+    &#34;decoder_versions&#34;: {
+      &#34;FFmpeg libavcodec&#34;: &#34;62.11.100&#34;,
+      &#34;FFmpeg libavdevice&#34;: &#34;62.1.100&#34;,
+      &#34;FFmpeg libavfilter&#34;: &#34;11.4.100&#34;,
+      &#34;FFmpeg libavformat&#34;: &#34;62.3.100&#34;,
+      &#34;FFmpeg libavutil&#34;: &#34;60.8.100&#34;,
+      &#34;FFmpeg libswresample&#34;: &#34;6.1.100&#34;,
+      &#34;FFmpeg libswscale&#34;: &#34;9.1.100&#34;,
+      &#34;PyAV&#34;: &#34;16.1.0&#34;
+    },
+    &#34;display_name&#34;: &#34;[omitted]&#34;,
+    &#34;fps_reason&#34;: null,
+    &#34;kind&#34;: &#34;video&#34;,
+    &#34;oriented_height&#34;: 64,
+    &#34;oriented_width&#34;: 96,
+    &#34;privacy_mode&#34;: &#34;media_included&#34;,
+    &#34;processed_frame_count&#34;: 8,
+    &#34;processed_frames&#34;: [
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 0,
+        &#34;selected_position&#34;: 0,
+        &#34;source_ordinal&#34;: 0
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 1,
+        &#34;selected_position&#34;: 1,
+        &#34;source_ordinal&#34;: 2
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 2,
+        &#34;selected_position&#34;: 2,
+        &#34;source_ordinal&#34;: 4
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 3,
+        &#34;selected_position&#34;: 3,
+        &#34;source_ordinal&#34;: 6
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 4,
+        &#34;selected_position&#34;: 4,
+        &#34;source_ordinal&#34;: 9
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 5,
+        &#34;selected_position&#34;: 5,
+        &#34;source_ordinal&#34;: 11
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 6,
+        &#34;selected_position&#34;: 6,
+        &#34;source_ordinal&#34;: 13
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 7,
+        &#34;selected_position&#34;: 7,
+        &#34;source_ordinal&#34;: 15
+      }
+    ],
+    &#34;record_kind&#34;: &#34;media_manifest&#34;,
+    &#34;reported_frame_count&#34;: null,
+    &#34;requested_frames&#34;: 8,
+    &#34;sampling_method&#34;: &#34;Inclusive rational PTS targets, nearest frame; ties choose earlier PTS then ordinal; de-duplicate targets; one target selects the first frame.&#34;,
+    &#34;sampling_policy&#34;: &#34;uniform&#34;,
+    &#34;schema_version&#34;: &#34;1.0&#34;,
+    &#34;selected_frame_count&#34;: 8,
+    &#34;selected_frames&#34;: [
+      {
+        &#34;ordinal&#34;: 0,
+        &#34;processor_timestamp_seconds&#34;: 0.0,
+        &#34;pts&#34;: 0,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 2,
+        &#34;processor_timestamp_seconds&#34;: 0.5,
+        &#34;pts&#34;: 500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 4,
+        &#34;processor_timestamp_seconds&#34;: 1.0,
+        &#34;pts&#34;: 1000,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 6,
+        &#34;processor_timestamp_seconds&#34;: 1.5,
+        &#34;pts&#34;: 1500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 9,
+        &#34;processor_timestamp_seconds&#34;: 2.25,
+        &#34;pts&#34;: 2250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 11,
+        &#34;processor_timestamp_seconds&#34;: 2.75,
+        &#34;pts&#34;: 2750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 13,
+        &#34;processor_timestamp_seconds&#34;: 3.25,
+        &#34;pts&#34;: 3250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 15,
+        &#34;processor_timestamp_seconds&#34;: 3.75,
+        &#34;pts&#34;: 3750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      }
+    ],
+    &#34;sha256&#34;: &#34;2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1&#34;,
+    &#34;source_bytes&#34;: 61202,
+    &#34;source_duration_reason&#34;: &#34;Video stream duration metadata is unavailable.&#34;,
+    &#34;source_duration_seconds&#34;: null,
+    &#34;source_frame_count&#34;: 16,
+    &#34;source_height&#34;: 64,
+    &#34;source_mode&#34;: null,
+    &#34;source_width&#34;: 96,
+    &#34;timestamp_policy&#34;: &#34;Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.&#34;,
+    &#34;transforms&#34;: [
+      &#34;PyAV decoded selected frames to RGB24; no decoder resize.&#34;
+    ],
+    &#34;warnings&#34;: [
+      &#34;Decoder runtime is checked between frames; native codec calls cannot be interrupted.&#34;,
+      &#34;Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.&#34;,
+      &#34;Container frame count is unavailable; source_frame_count is the complete decoded count.&#34;
+    ]
+  },
+  &#34;token_accounting&#34;: {
+    &#34;encoder_grid_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Read the actual emitted patch tensor row count (shape[0]).&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;pixel_values_videos&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 32
+    },
+    &#34;grid_derived_visual_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;derived&#34;,
+      &#34;method&#34;: &#34;grid_t * grid_h * grid_w / merge_size^2; checked against placeholder IDs.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;video_grid_thw&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 8
+    },
+    &#34;grid_matches_placeholders&#34;: true,
+    &#34;nonpadding_prompt_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Sum non-padding positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor attention_mask&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 52
+    },
+    &#34;nonvisual_prompt_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;derived&#34;,
+      &#34;method&#34;: &#34;Non-padding prompt positions minus visual placeholder positions; includes chat template, timestamps and structural tokens, not just user text.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;attention_mask and input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 44
+    },
+    &#34;observed_placeholder_indices&#34;: [
+      10,
+      11,
+      20,
+      21,
+      30,
+      31,
+      40,
+      41
+    ],
+    &#34;placeholder_token_id&#34;: 151656,
+    &#34;server_completion_usage&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;No serving endpoint was contacted.&#34;,
+      &#34;unit&#34;: &#34;tokens&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;server_prompt_usage&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;No serving endpoint was contacted.&#34;,
+      &#34;unit&#34;: &#34;tokens&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;user_text_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;User text is not isolated from template/structure; use the nonvisual residual.&#34;,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;video_timestamp_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;Timestamp tokens are not isolated; included in the nonvisual residual.&#34;,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;vision_boundary_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Count known vision-start and vision-end token IDs at active positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 8
+    },
+    &#34;visual_placeholder_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Count token ID 151656 at active attention-mask positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 8
+    }
+  }
+}</pre></details>
+      <details><summary>Reproduce this inspection locally</summary><p style="margin-top:12px;font-size:13px">Use the exact model revision, dependency tuple, and effective settings above. Supply your local media path with the matching source SHA-256 and the original prompt matching its hash. Paths and raw prompt text are intentionally omitted. The recipient must have access to the processor artifacts or explicitly download the allowlisted artifacts first.</p><pre># Replace LOCAL_* placeholders; output must be a new directory.
+modalmeter inspect LOCAL_MEDIA_PATH --offline --output NEW_RUN_DIRECTORY --processor-dir LOCAL_PROCESSOR_DIRECTORY --prompt-file LOCAL_PROMPT_FILE --model Qwen/Qwen3-VL-2B-Instruct --revision 89644892e4d85e24eaac8bacfd4f463576704203 --sampling uniform --frames 8 --pixel-budget 24576 --include-media
+# Source SHA-256: 2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1
+# Prompt SHA-256: 3bcd095e1d6b4187ce9a19eaa6130475a84289ff0fd63ce0c44211dd285a6d55</pre></details>
+    </section>
+  </article>
+  <article aria-label="video inspection 2">
+<div class="run-divider"><div class="eyebrow">Variant 1</div><h2>Video input · 2e6f7df7d16c</h2></div>    <div class="cards">
+      <div class="card highlight"><div class="card-label">Visual embedding placeholders</div><div class="card-value">8</div><div class="card-note">Decoder positions after spatial merging · observed</div></div>
+      <div class="card"><div class="card-label">Complete processed prompt</div><div class="card-value">84</div><div class="card-note">Non-padding positions · observed</div></div>
+      <div class="card"><div class="card-label">Vision encoder positions</div><div class="card-value">32</div><div class="card-note">Grid positions before spatial merging · observed</div></div>
+      <div class="card"><div class="card-label">Selected / processed frames</div><div class="card-value">16 / 16</div><div class="card-note">0 repeated or temporally padded positions</div></div>
+    </div>
+    <section class="section">
+      <div class="section-head"><h2>What the processor received</h2><span class="pill">video</span></div>
+      <div class="two-col">
+        <dl class="facts"><dt>Input</dt><dd>Video · 2e6f7df7d16c</dd><dt>Source dimensions</dt><dd>96 × 64 px</dd><dt>After orientation</dt><dd>96 × 64 px</dd><dt>Processed dimensions</dt><dd>32 × 32 px</dd><dt>Source size</dt><dd>61,202 bytes</dd><dt>Transforms</dt><dd>PyAV decoded selected frames to RGB24; no decoder resize.</dd><dt>Source duration</dt><dd>Unavailable — Video stream duration metadata is unavailable.</dd><dt>Decoded / reported frames</dt><dd>16 / Unavailable</dd><dt>Average FPS</dt><dd>4</dd><dt>Timestamp policy</dt><dd>Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.</dd></dl>
+        <dl class="facts"><dt>Model</dt><dd>Qwen/Qwen3-VL-2B-Instruct</dd><dt>Immutable revision</dt><dd>89644892e4d85e24eaac8bacfd4f463576704203</dd><dt>Adapter</dt><dd>qwen3-vl-native/1</dd><dt>Grid [T, H, W]</dt><dd>[8, 2, 2]</dd><dt>Processor check</dt><dd>processor_verified</dd><dt>Server parity</dt><dd>server_parity_unverified</dd></dl>
+      </div>
+      <div class="callout"><p><strong>Sampling: uniform · requested: 16 · selected: 16 · processed: 16</strong></p><p>Decoded presentation timestamps preserve the source timeline. Processor timestamps and grouped prompt labels may use frame index / FPS; they are separate observations.</p></div>
+      <div class="section-head" style="margin-top:24px"><h3>Selected-frame timeline</h3><span class="muted" style="font-size:12px">Original aspect ratios preserved</span></div>
+      <div class="timeline"><figure class="frame"><div class="frame-media"><img alt="Selected video frame 1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAuklEQVR4nO3WMQqDUBRFwRfUdbj/XaYJv0o88NvMYKXdwQf3NTPH9+f2/pg55xoeCBQECgIFgYJAQaBwznX/+OT9J1A1/G8CBYGCQEGgIFAQKNhBsfv8QUGgIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAs2zNxSwDtf6jWgIAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 1 · source #0</strong><div>Source PTS: 0 s</div><div>Exact: 0 × 1/1000 s</div><div>Processor: 0 s</div><div>Processed positions: 0</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUVAGcglUAz990KCLgI/6VJm5MjOnrzSvzxfj+vMt+fw/jpzm/twQqAgUBAoCBQECgKF29yPH5+8/wSqhv9NoCBQECgIFAQKAgU7KHafPygIFAQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaA59wb12A92Qxy42gAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 2 · source #1</strong><div>Source PTS: 0.25 s</div><div>Exact: 250 × 1/1000 s</div><div>Processor: 0.25 s</div><div>Processed positions: 1</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwHxVAedZKgi4AnXcqMHNnZk1f6l8fzfsx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXtcPEBUIlK+mAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 3 · source #2</strong><div>Source PTS: 0.5 s</div><div>Exact: 500 × 1/1000 s</div><div>Processor: 0.5 s</div><div>Processed positions: 2</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwWVVEwGQm6CHjSpczIkZ09eaV/eTzvx8yn5/T+mLnObfhBoCBQECgIFAQKAoXr3M4vn7x/B6qG/02gIFAQKAgUBAoCBTsodp8/KAgUBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoPntBbhGELRnBjOaAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 4 · source #3</strong><div>Source PTS: 0.75 s</div><div>Exact: 750 × 1/1000 s</div><div>Processor: 0.75 s</div><div>Processed positions: 3</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwQ5VAexZGgi4AnXcqMHNnZk1f6l+f9ccx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXldFEFMo/Ve0AAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 5 · source #4</strong><div>Source PTS: 1 s</div><div>Exact: 1000 × 1/1000 s</div><div>Processor: 1 s</div><div>Processed positions: 4</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwzFVAgTZCgi4AnXcqMHNnZk1f6l+fjfsx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXjh8EPIrtX61AAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 6 · source #5</strong><div>Source PTS: 1.25 s</div><div>Exact: 1250 × 1/1000 s</div><div>Processor: 1.25 s</div><div>Processed positions: 5</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 7" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUVAEyTuP6E4KiBBF4GfdCkzcmRnT17pXx6v53Xm23N4f525zX04IVAQKAgUBAoCBYHCbe7Hj0/efwJVw/8mUBAoCBQECgIFgYIdFLvPHxQECgIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgIFCwgxY7aIsTCwIFgYJAQaAgULCDFjtoixMLAgWBgkBBoCBQsIMWO2iLEwsCBYGCQEGgINCcewPWbBCRR3PK2AAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 7 · source #6</strong><div>Source PTS: 1.5 s</div><div>Exact: 1500 × 1/1000 s</div><div>Processor: 1.5 s</div><div>Processed positions: 6</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 8" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwNAbXTFAm6CHjSpczIkZ09eaV/edyfx8yn5/T+mLnObfhBoCBQECgIFAQKAoXr3M4vn7x/B6qG/02gIFAQKAgUBAoCBTsodp8/KAgUBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoGAHLXbQFicWBAoCBYGCQEGgYActdtAWJxYECgIFgYJAQaBgBy120BYnFgQKAgWBgkBBoPntBXVrEDCmwZm5AAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 8 · source #7</strong><div>Source PTS: 1.75 s</div><div>Exact: 1750 × 1/1000 s</div><div>Processor: 1.75 s</div><div>Processed positions: 7</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 9" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwmpVAiZZCgi4AnXcqMHNnZk1f6l/vjecx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXlaiEM/y+aB1AAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 9 · source #8</strong><div>Source PTS: 2 s</div><div>Exact: 2000 × 1/1000 s</div><div>Processor: 2 s</div><div>Processed positions: 8</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 10" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbh8iqMJEnQR8KRLmZEjO3vySv/2eJ73mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsB9pIQbsy8V/wAAAAASUVORK5CYII=" loading="lazy"></div><figcaption><strong>Selection 10 · source #9</strong><div>Source PTS: 2.25 s</div><div>Exact: 2250 × 1/1000 s</div><div>Processor: 2.25 s</div><div>Processed positions: 9</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 11" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WMQrCUBRFwSfRdQRciPtfgeuxkV+pB37rDKmS7pAH9/J83I+ZT8/p/TFzndvwg0BBoCBQECgIFAQK17mdXz55/w5UDf+bQEGgIFAQKAgUBAp2UOw+f1AQKAgUBAoCBYGCQMEOWuygLU4sCBQECgIFgYJAwQ5a7KAtTiwIFAQKAgWBgkDBDlrsoC1OLAgUBAoCBYGCQMEOWuygLU4sCBQECgIFgYJAwQ5a7KAtTiwIFAQKAgWBgkDz2wuVkRANJKKCCQAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 11 · source #10</strong><div>Source PTS: 2.5 s</div><div>Exact: 2500 × 1/1000 s</div><div>Processor: 2.5 s</div><div>Processed positions: 10</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 12" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WsQ3CQBBFwUXYdbgUaqRjEnQR8KRLmZEjO3vySv92Ph/3mU/P5f195phz+EGgIFAQKAgUBAoChWPO68sn79+BquF/EygIFAQKAgWBgkDBDord5w8KAgWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBAo2EGLHbTFiQWBgkBBoCBQECjYQYsdtMWJBYGCQEGgIFAQKNhBix20xYkFgYJAQaAgUBBofnsBM5APrDQejk4AAAAASUVORK5CYII=" loading="lazy"></div><figcaption><strong>Selection 12 · source #11</strong><div>Source PTS: 2.75 s</div><div>Exact: 2750 × 1/1000 s</div><div>Processor: 2.75 s</div><div>Processed positions: 11</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 13" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOtwE5VA+hZCgi4AnXcqMHNnZk1f6l/vzccx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXhTHEEsG2ouMAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 13 · source #12</strong><div>Source PTS: 3 s</div><div>Exact: 3000 × 1/1000 s</div><div>Processor: 3 s</div><div>Processed positions: 12</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 14" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwElEQVR4nO3WsQ3CQBBFwUWGOlwGBVEF3ZOgi4AnXcqMHNnZk1f6l8f9ecx8ek7vj5nr3IYfBAoCBYGCQEGgIFC4zu388sn7d6Bq+N8ECgIFgYJAQaAgULCDYvf5g4JAQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBAp20GIHbXFiQaAgUBAoCBQECnbQYgdtcWJBoCBQECgIFAQKdtBiB21xYkGgIFAQKAgUBJrfXrO3D+rewNSKAAAAAElFTkSuQmCC" loading="lazy"></div><figcaption><strong>Selection 14 · source #13</strong><div>Source PTS: 3.25 s</div><div>Exact: 3250 × 1/1000 s</div><div>Processor: 3.25 s</div><div>Processed positions: 13</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 15" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAv0lEQVR4nO3WMQrCUBRFwSfRdWS/lhau10Z+pR74rTOkSrpDHtzL4/48Zj49p/fHzHVuww8CBYGCQEGgIFAQKFzndn755P07UDX8bwIFgYJAQaAgUBAo2EGx+/xBQaAgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCBTtosYO2OLEgUBAoCBQECgIFO2ixg7Y4sSBQECgIFAQKAgU7aLGDtjixIFAQKAgUBAoCzW8vlO4QiTAf0zwAAAAASUVORK5CYII=" loading="lazy"></div><figcaption><strong>Selection 15 · source #14</strong><div>Source PTS: 3.5 s</div><div>Exact: 3500 × 1/1000 s</div><div>Processor: 3.5 s</div><div>Processed positions: 14</div></figcaption></figure><figure class="frame"><div class="frame-media"><img alt="Selected video frame 16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAwUlEQVR4nO3WsQ3CQBBFwUWGOtx/TAUUQi8k6CLgSZcyI0d29uSV/uXxvB8zn57T+2PmOrfhB4GCQEGgIFAQKAgUrnM7v3zy/h2oGv43gYJAQaAgUBAoCBTsoNh9/qAgUBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYGCHbTYQVucWBAoCBQECgIFgYIdtNhBW5xYECgIFAQKAgWBgh202EFbnFgQKAgUBAoCBYHmtxd2JREon0tAMAAAAABJRU5ErkJggg==" loading="lazy"></div><figcaption><strong>Selection 16 · source #15</strong><div>Source PTS: 3.75 s</div><div>Exact: 3750 × 1/1000 s</div><div>Processor: 3.75 s</div><div>Processed positions: 15</div></figcaption></figure></div>
+    </section>
+    <section class="section">
+      <h2>Token accounting</h2>
+      <p class="muted">Encoder grid positions, visual placeholders, and complete prompt positions describe different stages. The residual includes chat-template, timestamp, and structural overhead; it is not a user-text token count.</p>
+<div class="stack" role="img" aria-label="8 visual placeholders within 84 non-padding prompt positions"><div class="visual" style="width:9.52%"></div><div class="nonvisual" style="width:90.48%"></div></div><div class="legend"><span><i class="swatch"></i>Visual placeholder positions</span><span><i class="swatch nonvisual"></i>Nonvisual residual positions</span></div>      <div class="table-wrap"><table><thead><tr><th>Quantity / definition</th><th>Value</th><th>Evidence</th></tr></thead><tbody><tr><td><span class="metric-name">Vision encoder grid positions</span><span class="metric-definition">Read the actual emitted patch tensor row count (shape[0]).</span></td><td><span class="metric-value">32</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Visual embedding placeholder positions</span><span class="metric-definition">Count token ID 151656 at active attention-mask positions.</span></td><td><span class="metric-value">8</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Grid-derived visual positions</span><span class="metric-definition">grid_t * grid_h * grid_w / merge_size^2; checked against placeholder IDs.</span></td><td><span class="metric-value">8</span><span class="unit">positions</span></td><td><span class="evidence derived">derived</span></td></tr><tr><td><span class="metric-name">Complete non-padding processed prompt</span><span class="metric-definition">Sum non-padding positions.</span></td><td><span class="metric-value">84</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Nonvisual prompt residual</span><span class="metric-definition">Non-padding prompt positions minus visual placeholder positions; includes chat template, timestamps and structural tokens, not just user text.</span></td><td><span class="metric-value">76</span><span class="unit">positions</span></td><td><span class="evidence derived">derived</span></td></tr><tr><td><span class="metric-name">Vision boundary positions</span><span class="metric-definition">Count known vision-start and vision-end token IDs at active positions.</span></td><td><span class="metric-value">16</span><span class="unit">positions</span></td><td><span class="evidence observed">observed</span></td></tr><tr><td><span class="metric-name">Video timestamp positions</span><span class="metric-definition">not captured</span><span class="metric-definition">Timestamp tokens are not isolated; included in the nonvisual residual.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">positions</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Isolated user-text positions</span><span class="metric-definition">not captured</span><span class="metric-definition">User text is not isolated from template/structure; use the nonvisual residual.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">positions</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Server-reported prompt usage</span><span class="metric-definition">not captured</span><span class="metric-definition">No serving endpoint was contacted.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">tokens</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Server-reported completion usage</span><span class="metric-definition">not captured</span><span class="metric-definition">No serving endpoint was contacted.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">tokens</span></td><td><span class="evidence unavailable">unavailable</span></td></tr></tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Measured preparation and unavailable serving data</h2>
+      <p class="muted">Local preparation timings, when captured, measure CPU-side work. No serving request, model generation, GPU observation, or quality evaluation is part of this inspection.</p>
+      <div class="table-wrap"><table><thead><tr><th>Quantity / scope</th><th>Value</th><th>Evidence</th></tr></thead><tbody><tr><td><span class="metric-name">Artifact preparation ms</span><span class="metric-definition">Resolve/download and hash-check artifacts.</span></td><td><span class="metric-value">9.942</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Processor load ms</span><span class="metric-definition">Load pinned processor/tokenizer on CPU.</span></td><td><span class="metric-value">3,202.008</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Media preparation ms</span><span class="metric-definition">Hash, decode, select frames, transform EXIF/RGB and optionally create thumbnails.</span></td><td><span class="metric-value">27.041</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Cpu processor ms</span><span class="metric-definition">Apply chat template and one native CPU processor call, including tensor preparation.</span></td><td><span class="metric-value">16.573</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Workflow ms</span><span class="metric-definition">API entry through accounting; excludes JSON/HTML serialization and output writes.</span></td><td><span class="metric-value">3,259.977</span><span class="unit">ms</span></td><td><span class="evidence measured">measured</span></td></tr><tr><td><span class="metric-name">Time to first output ms</span><span class="metric-definition">No serving request was performed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">End to end server ms</span><span class="metric-definition">No serving request was performed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Gpu memory bytes</span><span class="metric-definition">No GPU or serving-host telemetry was collected.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">bytes</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Vision encoder ms</span><span class="metric-definition">No model/vision encoder was loaded.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Answer quality</span><span class="metric-definition">No model output or task-quality evaluation was produced.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">score</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Serving latency</span><span class="metric-definition">No serving endpoint request was made.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Vision encoder execution time</span><span class="metric-definition">No model forward pass was executed.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">ms</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">GPU memory</span><span class="metric-definition">No device or server memory measurement was captured.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">bytes</span></td><td><span class="evidence unavailable">unavailable</span></td></tr><tr><td><span class="metric-name">Answer quality</span><span class="metric-definition">No model answer or task-specific evaluation exists.</span></td><td><span class="metric-value">Unavailable</span><span class="unit">evaluation</span></td><td><span class="evidence unavailable">unavailable</span></td></tr></tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Evidence, provenance, and limitations</h2>
+      <dl class="facts"><dt>Run ID</dt><dd>c7ca43ca-d9eb-4fc7-a488-bde8a970c8ae</dd><dt>Created</dt><dd>2026-09-08T08:59:21.766908+00:00</dd><dt>Schema / tool</dt><dd>1.0 / 0.1.0.dev0</dd><dt>Source SHA-256</dt><dd>2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1</dd><dt>Prompt SHA-256</dt><dd>3bcd095e1d6b4187ce9a19eaa6130475a84289ff0fd63ce0c44211dd285a6d55</dd><dt>Template SHA-256</dt><dd>3636d0f0bd6bef02654cdffdc447b79cb2cef8ab02cc75267345946291a489e4</dd><dt>Processor evidence</dt><dd>Pinned adapter compared with unmodified CPU processor in tests/test_processor.py; see docs/evidence/m1 and docs/evidence/m2 for exact cases and limits. This run also compares emitted grid counts with actual active placeholder IDs.</dd><dt>Server parity evidence</dt><dd>No live serving endpoint was tested.</dd></dl>
+<div class="callout caution"><strong>Interpretation limits</strong><ul class="bullets"><li>Decoder runtime is checked between frames; native codec calls cannot be interrupted.</li><li>Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.</li><li>Container frame count is unavailable; source_frame_count is the complete decoded count.</li><li>Timestamp token positions are not isolated; timestamp text and boundaries are included in the nonvisual prompt residual. Native labels use index/FPS, not PTS.</li><li>Video stream duration metadata is unavailable.</li></ul></div>      <details><summary>Effective settings and dependency versions</summary><pre>{
+  &#34;decoder_versions&#34;: {
+    &#34;FFmpeg libavcodec&#34;: &#34;62.11.100&#34;,
+    &#34;FFmpeg libavdevice&#34;: &#34;62.1.100&#34;,
+    &#34;FFmpeg libavfilter&#34;: &#34;11.4.100&#34;,
+    &#34;FFmpeg libavformat&#34;: &#34;62.3.100&#34;,
+    &#34;FFmpeg libavutil&#34;: &#34;60.8.100&#34;,
+    &#34;FFmpeg libswresample&#34;: &#34;6.1.100&#34;,
+    &#34;FFmpeg libswscale&#34;: &#34;9.1.100&#34;,
+    &#34;PyAV&#34;: &#34;16.1.0&#34;
+  },
+  &#34;dependency_versions&#34;: {
+    &#34;av&#34;: &#34;16.1.0&#34;,
+    &#34;huggingface-hub&#34;: &#34;0.36.2&#34;,
+    &#34;numpy&#34;: &#34;2.5.3&#34;,
+    &#34;pillow&#34;: &#34;12.0.0&#34;,
+    &#34;tokenizers&#34;: &#34;0.22.2&#34;,
+    &#34;torch&#34;: &#34;2.9.1&#34;,
+    &#34;torchvision&#34;: &#34;0.24.1&#34;,
+    &#34;transformers&#34;: &#34;4.57.6&#34;
+  },
+  &#34;effective_settings&#34;: {
+    &#34;device&#34;: &#34;cpu&#34;,
+    &#34;do_convert_rgb&#34;: true,
+    &#34;do_normalize&#34;: true,
+    &#34;do_rescale&#34;: true,
+    &#34;do_resize&#34;: true,
+    &#34;do_sample_frames&#34;: false,
+    &#34;image_mean&#34;: [
+      0.5,
+      0.5,
+      0.5
+    ],
+    &#34;image_std&#34;: [
+      0.5,
+      0.5,
+      0.5
+    ],
+    &#34;merge_size&#34;: 2,
+    &#34;native_default_fps&#34;: 2,
+    &#34;native_max_frames&#34;: 768,
+    &#34;native_min_frames&#34;: 4,
+    &#34;patch_size&#34;: 16,
+    &#34;processor_class&#34;: &#34;Qwen3VLVideoProcessor&#34;,
+    &#34;resample&#34;: 3,
+    &#34;rescale_factor&#34;: 0.00392156862745098,
+    &#34;sampling_owner&#34;: &#34;ModalMeter: native default indices or uniform PTS&#34;,
+    &#34;size&#34;: {
+      &#34;longest_edge&#34;: 24576,
+      &#34;shortest_edge&#34;: 4096
+    },
+    &#34;temporal_patch_size&#34;: 2,
+    &#34;timestamp_basis&#34;: &#34;ordinal / nominal FPS; native grouped/rounded labels&#34;
+  },
+  &#34;processor_artifact_sha256&#34;: {
+    &#34;chat_template.json&#34;: &#34;6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4&#34;,
+    &#34;config.json&#34;: &#34;bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b&#34;,
+    &#34;merges.txt&#34;: &#34;599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3&#34;,
+    &#34;preprocessor_config.json&#34;: &#34;27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516&#34;,
+    &#34;tokenizer.json&#34;: &#34;a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7&#34;,
+    &#34;tokenizer_config.json&#34;: &#34;c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399&#34;,
+    &#34;video_preprocessor_config.json&#34;: &#34;7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13&#34;,
+    &#34;vocab.json&#34;: &#34;ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910&#34;
+  },
+  &#34;requested_settings&#34;: {
+    &#34;frames&#34;: 16,
+    &#34;max_decode_seconds&#34;: 30.0,
+    &#34;max_decoded_bytes&#34;: 268435456,
+    &#34;max_decoded_frames&#34;: 10000,
+    &#34;max_file_bytes&#34;: 268435456,
+    &#34;max_frames&#34;: 128,
+    &#34;max_pixels&#34;: 16777216,
+    &#34;max_prompt_bytes&#34;: 16384,
+    &#34;max_tensor_bytes&#34;: 268435456,
+    &#34;pixel_budget&#34;: 24576,
+    &#34;sampling&#34;: &#34;uniform&#34;
+  },
+  &#34;runtime&#34;: {
+    &#34;device&#34;: &#34;cpu&#34;,
+    &#34;machine&#34;: &#34;arm64&#34;,
+    &#34;os_version&#34;: &#34;26.6.2&#34;,
+    &#34;python&#34;: &#34;3.12.11&#34;,
+    &#34;system&#34;: &#34;Darwin&#34;
+  }
+}</pre></details>
+      <details><summary>Frame manifest, grid, and accounting evidence</summary><pre>{
+  &#34;compatibility&#34;: {
+    &#34;modality&#34;: &#34;video&#34;,
+    &#34;processor_evidence&#34;: &#34;Pinned adapter compared with unmodified CPU processor in tests/test_processor.py; see docs/evidence/m1 and docs/evidence/m2 for exact cases and limits. This run also compares emitted grid counts with actual active placeholder IDs.&#34;,
+    &#34;processor_verification&#34;: &#34;processor_verified&#34;,
+    &#34;server_parity&#34;: &#34;server_parity_unverified&#34;,
+    &#34;server_parity_reason&#34;: &#34;No live serving endpoint was tested.&#34;
+  },
+  &#34;grid_thw&#34;: [
+    8,
+    2,
+    2
+  ],
+  &#34;group_timestamp_labels&#34;: [
+    &#34;&lt;0.1 seconds&gt;&#34;,
+    &#34;&lt;0.6 seconds&gt;&#34;,
+    &#34;&lt;1.1 seconds&gt;&#34;,
+    &#34;&lt;1.6 seconds&gt;&#34;,
+    &#34;&lt;2.1 seconds&gt;&#34;,
+    &#34;&lt;2.6 seconds&gt;&#34;,
+    &#34;&lt;3.1 seconds&gt;&#34;,
+    &#34;&lt;3.6 seconds&gt;&#34;
+  ],
+  &#34;manifest&#34;: {
+    &#34;average_fps&#34;: 4.0,
+    &#34;decoder_versions&#34;: {
+      &#34;FFmpeg libavcodec&#34;: &#34;62.11.100&#34;,
+      &#34;FFmpeg libavdevice&#34;: &#34;62.1.100&#34;,
+      &#34;FFmpeg libavfilter&#34;: &#34;11.4.100&#34;,
+      &#34;FFmpeg libavformat&#34;: &#34;62.3.100&#34;,
+      &#34;FFmpeg libavutil&#34;: &#34;60.8.100&#34;,
+      &#34;FFmpeg libswresample&#34;: &#34;6.1.100&#34;,
+      &#34;FFmpeg libswscale&#34;: &#34;9.1.100&#34;,
+      &#34;PyAV&#34;: &#34;16.1.0&#34;
+    },
+    &#34;display_name&#34;: &#34;[omitted]&#34;,
+    &#34;fps_reason&#34;: null,
+    &#34;kind&#34;: &#34;video&#34;,
+    &#34;oriented_height&#34;: 64,
+    &#34;oriented_width&#34;: 96,
+    &#34;privacy_mode&#34;: &#34;media_included&#34;,
+    &#34;processed_frame_count&#34;: 16,
+    &#34;processed_frames&#34;: [
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 0,
+        &#34;selected_position&#34;: 0,
+        &#34;source_ordinal&#34;: 0
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 1,
+        &#34;selected_position&#34;: 1,
+        &#34;source_ordinal&#34;: 1
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 2,
+        &#34;selected_position&#34;: 2,
+        &#34;source_ordinal&#34;: 2
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 3,
+        &#34;selected_position&#34;: 3,
+        &#34;source_ordinal&#34;: 3
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 4,
+        &#34;selected_position&#34;: 4,
+        &#34;source_ordinal&#34;: 4
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 5,
+        &#34;selected_position&#34;: 5,
+        &#34;source_ordinal&#34;: 5
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 6,
+        &#34;selected_position&#34;: 6,
+        &#34;source_ordinal&#34;: 6
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 7,
+        &#34;selected_position&#34;: 7,
+        &#34;source_ordinal&#34;: 7
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 8,
+        &#34;selected_position&#34;: 8,
+        &#34;source_ordinal&#34;: 8
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 9,
+        &#34;selected_position&#34;: 9,
+        &#34;source_ordinal&#34;: 9
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 10,
+        &#34;selected_position&#34;: 10,
+        &#34;source_ordinal&#34;: 10
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 11,
+        &#34;selected_position&#34;: 11,
+        &#34;source_ordinal&#34;: 11
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 12,
+        &#34;selected_position&#34;: 12,
+        &#34;source_ordinal&#34;: 12
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 13,
+        &#34;selected_position&#34;: 13,
+        &#34;source_ordinal&#34;: 13
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 14,
+        &#34;selected_position&#34;: 14,
+        &#34;source_ordinal&#34;: 14
+      },
+      {
+        &#34;duplicated&#34;: false,
+        &#34;duplication_reason&#34;: null,
+        &#34;position&#34;: 15,
+        &#34;selected_position&#34;: 15,
+        &#34;source_ordinal&#34;: 15
+      }
+    ],
+    &#34;record_kind&#34;: &#34;media_manifest&#34;,
+    &#34;reported_frame_count&#34;: null,
+    &#34;requested_frames&#34;: 16,
+    &#34;sampling_method&#34;: &#34;Inclusive rational PTS targets, nearest frame; ties choose earlier PTS then ordinal; de-duplicate targets; one target selects the first frame.&#34;,
+    &#34;sampling_policy&#34;: &#34;uniform&#34;,
+    &#34;schema_version&#34;: &#34;1.0&#34;,
+    &#34;selected_frame_count&#34;: 16,
+    &#34;selected_frames&#34;: [
+      {
+        &#34;ordinal&#34;: 0,
+        &#34;processor_timestamp_seconds&#34;: 0.0,
+        &#34;pts&#34;: 0,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 1,
+        &#34;processor_timestamp_seconds&#34;: 0.25,
+        &#34;pts&#34;: 250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 2,
+        &#34;processor_timestamp_seconds&#34;: 0.5,
+        &#34;pts&#34;: 500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 3,
+        &#34;processor_timestamp_seconds&#34;: 0.75,
+        &#34;pts&#34;: 750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 0.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 4,
+        &#34;processor_timestamp_seconds&#34;: 1.0,
+        &#34;pts&#34;: 1000,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 5,
+        &#34;processor_timestamp_seconds&#34;: 1.25,
+        &#34;pts&#34;: 1250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 6,
+        &#34;processor_timestamp_seconds&#34;: 1.5,
+        &#34;pts&#34;: 1500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 7,
+        &#34;processor_timestamp_seconds&#34;: 1.75,
+        &#34;pts&#34;: 1750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 1.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 8,
+        &#34;processor_timestamp_seconds&#34;: 2.0,
+        &#34;pts&#34;: 2000,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 9,
+        &#34;processor_timestamp_seconds&#34;: 2.25,
+        &#34;pts&#34;: 2250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 10,
+        &#34;processor_timestamp_seconds&#34;: 2.5,
+        &#34;pts&#34;: 2500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 11,
+        &#34;processor_timestamp_seconds&#34;: 2.75,
+        &#34;pts&#34;: 2750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 2.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 12,
+        &#34;processor_timestamp_seconds&#34;: 3.0,
+        &#34;pts&#34;: 3000,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.0,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 13,
+        &#34;processor_timestamp_seconds&#34;: 3.25,
+        &#34;pts&#34;: 3250,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.25,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 14,
+        &#34;processor_timestamp_seconds&#34;: 3.5,
+        &#34;pts&#34;: 3500,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.5,
+        &#34;timestamp_unavailable_reason&#34;: null
+      },
+      {
+        &#34;ordinal&#34;: 15,
+        &#34;processor_timestamp_seconds&#34;: 3.75,
+        &#34;pts&#34;: 3750,
+        &#34;time_base_denominator&#34;: 1000,
+        &#34;time_base_numerator&#34;: 1,
+        &#34;timestamp_seconds&#34;: 3.75,
+        &#34;timestamp_unavailable_reason&#34;: null
+      }
+    ],
+    &#34;sha256&#34;: &#34;2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1&#34;,
+    &#34;source_bytes&#34;: 61202,
+    &#34;source_duration_reason&#34;: &#34;Video stream duration metadata is unavailable.&#34;,
+    &#34;source_duration_seconds&#34;: null,
+    &#34;source_frame_count&#34;: 16,
+    &#34;source_height&#34;: 64,
+    &#34;source_mode&#34;: null,
+    &#34;source_width&#34;: 96,
+    &#34;timestamp_policy&#34;: &#34;Actual rational PTS preserved separately from derived ordinal / nominal FPS processor timestamps.&#34;,
+    &#34;transforms&#34;: [
+      &#34;PyAV decoded selected frames to RGB24; no decoder resize.&#34;
+    ],
+    &#34;warnings&#34;: [
+      &#34;Decoder runtime is checked between frames; native codec calls cannot be interrupted.&#34;,
+      &#34;Memory limit bounds selected RGB arrays plus explicit frame workspace; codec buffers and later processor tensors are outside this decoder allocation bound.&#34;,
+      &#34;Container frame count is unavailable; source_frame_count is the complete decoded count.&#34;
+    ]
+  },
+  &#34;token_accounting&#34;: {
+    &#34;encoder_grid_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Read the actual emitted patch tensor row count (shape[0]).&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;pixel_values_videos&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 32
+    },
+    &#34;grid_derived_visual_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;derived&#34;,
+      &#34;method&#34;: &#34;grid_t * grid_h * grid_w / merge_size^2; checked against placeholder IDs.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;video_grid_thw&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 8
+    },
+    &#34;grid_matches_placeholders&#34;: true,
+    &#34;nonpadding_prompt_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Sum non-padding positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor attention_mask&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 84
+    },
+    &#34;nonvisual_prompt_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;derived&#34;,
+      &#34;method&#34;: &#34;Non-padding prompt positions minus visual placeholder positions; includes chat template, timestamps and structural tokens, not just user text.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;attention_mask and input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 76
+    },
+    &#34;observed_placeholder_indices&#34;: [
+      10,
+      19,
+      28,
+      37,
+      46,
+      55,
+      64,
+      73
+    ],
+    &#34;placeholder_token_id&#34;: 151656,
+    &#34;server_completion_usage&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;No serving endpoint was contacted.&#34;,
+      &#34;unit&#34;: &#34;tokens&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;server_prompt_usage&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;No serving endpoint was contacted.&#34;,
+      &#34;unit&#34;: &#34;tokens&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;user_text_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;User text is not isolated from template/structure; use the nonvisual residual.&#34;,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;video_timestamp_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;unavailable&#34;,
+      &#34;method&#34;: &#34;not captured&#34;,
+      &#34;scope&#34;: &#34;one inspection&#34;,
+      &#34;source&#34;: &#34;ModalMeter CPU inspection&#34;,
+      &#34;unavailable_reason&#34;: &#34;Timestamp tokens are not isolated; included in the nonvisual residual.&#34;,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: null
+    },
+    &#34;vision_boundary_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Count known vision-start and vision-end token IDs at active positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 16
+    },
+    &#34;visual_placeholder_positions&#34;: {
+      &#34;evidence_kind&#34;: &#34;observed&#34;,
+      &#34;method&#34;: &#34;Count token ID 151656 at active attention-mask positions.&#34;,
+      &#34;scope&#34;: &#34;one processed media prompt&#34;,
+      &#34;source&#34;: &#34;processor input_ids&#34;,
+      &#34;unavailable_reason&#34;: null,
+      &#34;unit&#34;: &#34;positions&#34;,
+      &#34;value&#34;: 8
+    }
+  }
+}</pre></details>
+      <details><summary>Reproduce this inspection locally</summary><p style="margin-top:12px;font-size:13px">Use the exact model revision, dependency tuple, and effective settings above. Supply your local media path with the matching source SHA-256 and the original prompt matching its hash. Paths and raw prompt text are intentionally omitted. The recipient must have access to the processor artifacts or explicitly download the allowlisted artifacts first.</p><pre># Replace LOCAL_* placeholders; output must be a new directory.
+modalmeter inspect LOCAL_MEDIA_PATH --offline --output NEW_RUN_DIRECTORY --processor-dir LOCAL_PROCESSOR_DIRECTORY --prompt-file LOCAL_PROMPT_FILE --model Qwen/Qwen3-VL-2B-Instruct --revision 89644892e4d85e24eaac8bacfd4f463576704203 --sampling uniform --frames 16 --pixel-budget 24576 --include-media
+# Source SHA-256: 2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1
+# Prompt SHA-256: 3bcd095e1d6b4187ce9a19eaa6130475a84289ff0fd63ce0c44211dd285a6d55</pre></details>
+    </section>
+  </article>
+  <footer class="footer"><p class="privacy">Embedded thumbnails were explicitly requested. Review media before sharing.</p><p style="margin:8px 0 0">Generated from versioned ModalMeter result data. All styles are embedded; no external fonts, scripts, tracking, or network requests are required.</p></footer>
+</main>
+</body>
+</html>

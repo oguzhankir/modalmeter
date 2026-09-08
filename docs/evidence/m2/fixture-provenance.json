@@ -1,0 +1,189 @@
+{
+  "purpose": "Synthetic CPU inspection fixtures; no inference or serving measurements",
+  "generator": "examples/generate_fixtures.py",
+  "license": "MIT; original algorithmic media authored for ModalMeter",
+  "container_reproducibility": "Pixels and PTS are deterministic; container bytes may vary",
+  "image": {
+    "file": "synthetic-image.png",
+    "sha256": "ed43e1d9f464d8d086b0ac5afb1c0edaa1dcdeb152f3bccd4fcd2a0f3fbaf7d7",
+    "width": 160,
+    "height": 96,
+    "rgb_sha256": "e40c74f7e52e7293c1c83460b1810701b4eb68466652d4b5d727b48fbd2ea745"
+  },
+  "videos": [
+    {
+      "file": "synthetic-video.mkv",
+      "sha256": "5332a01dfeefc8bcefe58fed045e0808b2d0e37267f025bfa180723414a0085a",
+      "codec": "ffv1",
+      "width": 96,
+      "height": 64,
+      "nominal_fps": "2",
+      "frame_count": 6,
+      "frame_ordinals": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "pts_seconds": [
+        "0",
+        "1/2",
+        "1",
+        "3/2",
+        "2",
+        "5/2"
+      ],
+      "rgb_sha256": [
+        "0fbd63bc6f603f8a7aa5e32a3112b77eafd74a80f538950fbe64193a2ff78982",
+        "e6d00fdddffe05832bfe7d3fecc6a9690b01389f5d3c7bd1178f7716bcc86bfa",
+        "5d6124cf502eabdb365c549bbe9be2c792cec4c1054750665c3b7c14f48a24eb",
+        "8e437ead589ddbfa46db71a90dc1ae065fb204e7af00c2d61090928f9ccdf0a7",
+        "332c430df22a01467d608ab81be941164fc0c3cabdcf0e115825d7c0476990cb",
+        "f8c9966598d278e4278d6c343f0a48188b89c5e3312e03b960f0a9549ad62f78"
+      ]
+    },
+    {
+      "file": "coupled-budget-video.mkv",
+      "sha256": "2e6f7df7d16cc5d50ac9cb21aae72c0b62f28d0a80ded854e18548423d9b2db1",
+      "codec": "ffv1",
+      "width": 96,
+      "height": 64,
+      "nominal_fps": "4",
+      "frame_count": 16,
+      "frame_ordinals": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "pts_seconds": [
+        "0",
+        "1/4",
+        "1/2",
+        "3/4",
+        "1",
+        "5/4",
+        "3/2",
+        "7/4",
+        "2",
+        "9/4",
+        "5/2",
+        "11/4",
+        "3",
+        "13/4",
+        "7/2",
+        "15/4"
+      ],
+      "rgb_sha256": [
+        "0fbd63bc6f603f8a7aa5e32a3112b77eafd74a80f538950fbe64193a2ff78982",
+        "e6d00fdddffe05832bfe7d3fecc6a9690b01389f5d3c7bd1178f7716bcc86bfa",
+        "5d6124cf502eabdb365c549bbe9be2c792cec4c1054750665c3b7c14f48a24eb",
+        "8e437ead589ddbfa46db71a90dc1ae065fb204e7af00c2d61090928f9ccdf0a7",
+        "332c430df22a01467d608ab81be941164fc0c3cabdcf0e115825d7c0476990cb",
+        "f8c9966598d278e4278d6c343f0a48188b89c5e3312e03b960f0a9549ad62f78",
+        "850f9ba6222ef8c3a970a9f1f1e4e1833359f15ea58047b2e77b883cb1238aca",
+        "0436ae3b5cb14a37b77a3987d2081a2eaf31049cf79a4614e660554efc4796c4",
+        "0dd4a4387c92376f59b64425ff795b9db7316252d7271d3f21c9cc3b8e15ade0",
+        "a987b9103ba28ddc6450f3bb3b6800e66a78f2753b098b21bb0fa6c25096ddeb",
+        "918d0f32e0f861510fcbde9aab0acc098b248971ff9faa93ca0530f6310b8d45",
+        "59d02dd51987ffbc87a0f6806f54df74cb891b1d65c9118888b527977130575c",
+        "24ec201273921f385b011bd2ca24552492fd3993d9459a1e439a1edcfc8b45a8",
+        "14dbd39ce1bb2531a516314f7fb31263e77ec4f1f72661f4008075c724942b07",
+        "8a8abd828d978b82ac0087a46561e022b40fc329a4ae3d0c752b8a7e6cdc5738",
+        "0db04a1a580647184d7a89dad69d470267b27c2df364dbb6e4a82ac69edb4273"
+      ]
+    },
+    {
+      "file": "single-frame.mkv",
+      "sha256": "2047e73b9f8eb5577687b29b95fcf27fc3a372d9b0cd56e49b96e04804553a2a",
+      "codec": "ffv1",
+      "width": 96,
+      "height": 64,
+      "nominal_fps": "2",
+      "frame_count": 1,
+      "frame_ordinals": [
+        0
+      ],
+      "pts_seconds": [
+        "0"
+      ],
+      "rgb_sha256": [
+        "0fbd63bc6f603f8a7aa5e32a3112b77eafd74a80f538950fbe64193a2ff78982"
+      ]
+    },
+    {
+      "file": "noninteger-fps.mkv",
+      "sha256": "238ec3570630bb79e16cf1afcc22e7c4eb488dda4adf729150579dd801e5fbea",
+      "codec": "ffv1",
+      "width": 96,
+      "height": 64,
+      "nominal_fps": "5/2",
+      "frame_count": 5,
+      "frame_ordinals": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "pts_seconds": [
+        "0",
+        "2/5",
+        "4/5",
+        "6/5",
+        "8/5"
+      ],
+      "rgb_sha256": [
+        "0fbd63bc6f603f8a7aa5e32a3112b77eafd74a80f538950fbe64193a2ff78982",
+        "e6d00fdddffe05832bfe7d3fecc6a9690b01389f5d3c7bd1178f7716bcc86bfa",
+        "5d6124cf502eabdb365c549bbe9be2c792cec4c1054750665c3b7c14f48a24eb",
+        "8e437ead589ddbfa46db71a90dc1ae065fb204e7af00c2d61090928f9ccdf0a7",
+        "332c430df22a01467d608ab81be941164fc0c3cabdcf0e115825d7c0476990cb"
+      ]
+    },
+    {
+      "file": "vfr-offset.mkv",
+      "sha256": "7728268a1f737e89f1b764ed038cc68956edd4536fdaab880503070c933b1194",
+      "codec": "ffv1",
+      "width": 96,
+      "height": 64,
+      "nominal_fps": "5/2",
+      "frame_count": 5,
+      "frame_ordinals": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "pts_seconds": [
+        "2",
+        "53/25",
+        "253/100",
+        "31/10",
+        "39/10"
+      ],
+      "rgb_sha256": [
+        "0fbd63bc6f603f8a7aa5e32a3112b77eafd74a80f538950fbe64193a2ff78982",
+        "e6d00fdddffe05832bfe7d3fecc6a9690b01389f5d3c7bd1178f7716bcc86bfa",
+        "5d6124cf502eabdb365c549bbe9be2c792cec4c1054750665c3b7c14f48a24eb",
+        "8e437ead589ddbfa46db71a90dc1ae065fb204e7af00c2d61090928f9ccdf0a7",
+        "332c430df22a01467d608ab81be941164fc0c3cabdcf0e115825d7c0476990cb"
+      ]
+    }
+  ]
+}

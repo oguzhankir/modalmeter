@@ -1,0 +1,16 @@
+$ .venv-spike/bin/python -m pytest -q -m processor
+Environment: {'MODALMETER_TEST_PROCESSOR_DIR': '/Users/oguz/Desktop/modalmeter/.cache/modalmeter/89644892e4d85e24eaac8bacfd4f463576704203'}
+..................................                                       [100%]
+=============================== warnings summary ===============================
+.venv-spike/lib/python3.12/site-packages/typer/__init__.py:24
+  /Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/typer/__init__.py:24: DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_binary_stream as get_binary_stream
+
+.venv-spike/lib/python3.12/site-packages/typer/__init__.py:25
+  /Users/oguz/Desktop/modalmeter/.venv-spike/lib/python3.12/site-packages/typer/__init__.py:25: DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_text_stream as get_text_stream
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+34 passed, 137 deselected, 2 warnings in 16.03s
+
+exit=0

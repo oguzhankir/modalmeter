@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+  <title>ModalMeter · {{ title }}</title>
+  <style>
+    :root{color-scheme:light;--ink:#142235;--muted:#546477;--line:#dce3ec;--paper:#fff;--blue:#075bd8;--pale:#edf4ff;--green:#126849;--amber:#855100}
+    *{box-sizing:border-box}body{margin:0;background:#f4f6f9;color:var(--ink);font:15px/1.6 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1180px;margin:auto;padding:30px 32px 64px}a{color:var(--blue)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(30px,5vw,46px);line-height:1.13;letter-spacing:-.04em;margin-bottom:14px}h2{font-size:22px;letter-spacing:-.025em;margin-bottom:16px}h3{font-size:15px;margin-bottom:8px}p{margin-bottom:12px}.muted{color:var(--muted)}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:var(--blue);margin-bottom:10px}.brand{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:35px}.wordmark{font-size:21px;letter-spacing:-.05em;font-weight:800}.brand small{font-size:12px;color:var(--muted)}.hero{max-width:850px;margin-bottom:26px}.pill,.evidence{display:inline-block;border-radius:5px;font-size:11px;font-weight:650;letter-spacing:.01em;padding:3px 7px;background:var(--pale);color:#154c95;vertical-align:middle}.evidence.measured{color:var(--green);background:#e7f5ee}.evidence.derived{color:#65459b;background:#f0eafa}.evidence.unavailable{color:var(--muted);background:#edf0f4}.evidence.estimated{color:var(--amber);background:#fff3d9}.badge-row{display:flex;gap:8px;flex-wrap:wrap}.section{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:20px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:16px}.section-head h2{margin:0}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:19px}.card.highlight{background:var(--blue);color:white;border-color:var(--blue)}.card-label{font-size:12px;line-height:1.4;min-height:34px;color:var(--muted)}.highlight .card-label,.highlight .card-note{color:#e0edff}.card-value{font-size:35px;line-height:1.2;font-weight:750;letter-spacing:-.04em;margin:10px 0 8px}.card-note{font-size:11px;color:var(--muted);line-height:1.45}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}.callout{border-left:3px solid var(--blue);padding:10px 16px;background:var(--pale);font-size:13px;margin:16px 0}.callout.caution{background:#fff8e8;border-color:#bd8b21}.callout p:last-child{margin-bottom:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:650;border-bottom:1px solid var(--line);padding:10px 12px 10px 0}td{padding:13px 12px 13px 0;border-bottom:1px solid #edf0f4;vertical-align:top}tr:last-child td{border-bottom:0}.metric-name{font-weight:650;display:block}.metric-definition{font-size:12px;line-height:1.5;color:var(--muted);display:block;margin-top:4px}.metric-value{font-size:19px;letter-spacing:-.025em;font-weight:700;white-space:nowrap}.unit{font-size:11px;color:var(--muted);white-space:normal;display:block;font-weight:400}.facts{display:grid;grid-template-columns:minmax(100px,.65fr) minmax(0,1.35fr);gap:10px 16px;margin:0;font-size:13px}.facts dt{color:var(--muted)}.facts dd{margin:0;overflow-wrap:anywhere}.timeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:18px}.frame{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0}.frame-media{background:#edf1f6;height:132px;display:flex;justify-content:center;align-items:center}.frame-media img{width:100%;height:100%;object-fit:contain}.frame-placeholder{font-size:11px;color:var(--muted)}figcaption{padding:11px;font-size:11px;color:var(--muted);overflow-wrap:anywhere}figcaption strong{color:var(--ink);display:block;font-size:12px;margin-bottom:4px}.stack{display:flex;height:13px;border-radius:4px;overflow:hidden;background:#edf0f4;margin:18px 0 10px}.stack .visual{background:var(--blue)}.stack .nonvisual{background:#abbed7}.legend{display:flex;flex-wrap:wrap;gap:20px;font-size:12px;color:var(--muted)}.swatch{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--blue);margin-right:5px}.swatch.nonvisual{background:#abbed7}details{margin-top:14px}summary{cursor:pointer;font-size:13px;color:var(--blue);font-weight:600}pre,code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border:1px solid var(--line);border-radius:6px;background:#f7f9fc;line-height:1.7;margin:12px 0 0}code{overflow-wrap:anywhere}.run-divider{margin:44px 0 18px}.run-divider h2{font-size:26px}.run-id{font-size:11px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.no-wrap{white-space:nowrap}.bullets{padding-left:20px;margin-bottom:0;font-size:13px}.bullets li{margin:7px 0;overflow-wrap:anywhere}.footer{margin-top:30px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}.empty{font-size:13px;color:var(--muted);padding:12px 0}.privacy{font-size:12px;color:var(--muted);margin-bottom:0}.comparison-table th,.comparison-table td{min-width:130px;overflow-wrap:anywhere}.diff-field{max-width:210px;overflow-wrap:anywhere}button,input{font:inherit}
+    .table-wrap{max-width:100%;min-width:0}.diff-table{min-width:880px;table-layout:fixed}.diff-table th,.diff-table td{overflow-wrap:anywhere}.diff-table .diff-field{max-width:none}.diff-value{margin:0}.diff-value summary{font-size:12px}.diff-value pre{max-height:320px;overflow:auto;padding:12px;margin-top:10px}.diff-scalar{white-space:pre-wrap}
+    @media(max-width:760px){main{padding:18px 16px 40px}.brand{margin-bottom:26px;padding-bottom:18px;align-items:flex-start}.brand small{max-width:145px;text-align:right}.section{padding:18px 15px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:15px}.card-value{font-size:30px}.two-col{grid-template-columns:1fr;gap:24px}.section-head{display:block}.section-head .muted{margin-top:6px;display:block}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.facts{grid-template-columns:minmax(85px,.7fr) minmax(0,1.3fr);gap:9px}.metric-value{font-size:16px}.evidence{font-size:10px;padding:2px 5px}.hero{margin-bottom:18px}}
+    @media print{body{background:white}main{max-width:none;padding:0}.section,.card{break-inside:avoid}.frame{break-inside:avoid}.brand{margin-bottom:18px}.section{margin-top:14px}details>pre{display:block}.table-wrap{overflow:visible}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="brand"><div class="wordmark">ModalMeter<span style="color:var(--blue)">.</span></div><small>Offline inspection report<br>CPU input preparation · {{ tool_version }}</small></header>
+  <div class="hero">
+    <div class="eyebrow">{{ "Controlled input comparison" if comparison else "Understand the model input" }}</div>
+    <h1>{{ title }}</h1>
+    <p class="muted">{{ subtitle }}</p>
+    <div class="badge-row"><span class="pill">Offline · self-contained</span><span class="pill">{{ "Media included by request" if include_media else "Sanitized · media omitted" }}</span><span class="pill">{{ parity_summary }}</span></div>
+  </div>
+  {% if comparison %}
+  <section class="section" aria-label="Comparison summary">
+    <div class="section-head"><h2>Compare the inputs</h2><span class="pill">{{ "Compatible baseline" if comparison.comparable else "Incompatible baseline" }}</span></div>
+    <p class="muted">The first run is the explicit baseline. Deltas describe processed inputs; they do not establish latency, memory, or answer quality.</p>
+    {% if comparison.incompatibilities %}<div class="callout caution"><strong>Interpret these runs separately.</strong><ul class="bullets">{% for issue in comparison.incompatibilities %}<li>{{ issue }}</li>{% endfor %}</ul></div>{% endif %}
+    <div class="table-wrap"><table class="comparison-table"><thead><tr><th>Run</th><th>Selected / processed</th><th>Visual placeholders</th><th>Prompt positions</th><th>Placeholder delta</th></tr></thead><tbody>
+    {% for run in runs %}<tr><td><strong>{{ "Baseline" if loop.first else "Variant " ~ loop.index0 }}</strong><span class="metric-definition">{{ run.short_id }}</span></td><td>{{ run.selected_count }} / {{ run.processed_count }}</td><td>{{ run.visual_count }}</td><td>{{ run.prompt_count }}</td><td>{{ comparison.deltas[loop.index0] }}</td></tr>{% endfor %}
+    </tbody></table></div>
+    {% if comparison.warnings %}<div class="callout caution"><strong>Interpret the changes</strong><ul class="bullets">{% for warning in comparison.warnings %}<li>{{ warning }}</li>{% endfor %}</ul></div>{% endif %}
+    <h3 style="margin-top:22px">Readable configuration differences</h3>
+    {% if comparison.differences %}
+    <div class="table-wrap"><table class="diff-table">
+      <colgroup><col style="width:220px"><col><col><col style="width:140px"></colgroup>
+      <thead><tr><th>Run / field</th><th>Baseline</th><th>Variant</th><th>Interpretation</th></tr></thead>
+      <tbody>{% for diff in comparison.differences %}
+        <tr>
+          <td class="diff-field"><span class="metric-definition">{{ diff.run_id }}</span><code>{{ diff.field }}</code></td>
+          {% for value in [diff.baseline_value, diff.compared_value] %}
+          <td>{% if value|length > 100 or diff.field in ["effective.selected_frames", "effective.processed_frames"] %}<details class="diff-value"><summary>{{ "Show frame mapping" if diff.field in ["effective.selected_frames", "effective.processed_frames"] else "View full value" }}</summary><pre>{{ value }}</pre></details>{% else %}<code class="diff-scalar">{{ value }}</code>{% endif %}</td>
+          {% endfor %}
+          <td>{{ diff.category }}</td>
+        </tr>
+      {% endfor %}</tbody>
+    </table></div>
+    {% else %}<p class="empty">No effective configuration differences found.</p>{% endif %}
+  </section>
+  {% endif %}
+  {% for run in runs %}
+  <article aria-label="{{ run.kind }} inspection {{ loop.index }}">
+    {% if comparison %}<div class="run-divider"><div class="eyebrow">{{ "Baseline" if loop.first else "Variant " ~ loop.index0 }}</div><h2>{{ run.heading }}</h2></div>{% endif %}
+    <div class="cards">
+      <div class="card highlight"><div class="card-label">Visual embedding placeholders</div><div class="card-value">{{ run.visual_count }}</div><div class="card-note">Decoder positions after spatial merging · {{ run.visual_evidence }}</div></div>
+      <div class="card"><div class="card-label">Complete processed prompt</div><div class="card-value">{{ run.prompt_count }}</div><div class="card-note">Non-padding positions · {{ run.prompt_evidence }}</div></div>
+      <div class="card"><div class="card-label">Vision encoder positions</div><div class="card-value">{{ run.encoder_count }}</div><div class="card-note">Grid positions before spatial merging · {{ run.encoder_evidence }}</div></div>
+      <div class="card"><div class="card-label">{{ "Selected / processed frames" if run.kind == "video" else "Input / processed dimensions" }}</div><div class="card-value"{% if run.kind == "image" %} style="font-size:21px;line-height:1.5"{% endif %}>{{ run.frame_summary }}</div><div class="card-note">{{ run.frame_note }}</div></div>
+    </div>
+    <section class="section">
+      <div class="section-head"><h2>What the processor received</h2><span class="pill">{{ run.kind }}</span></div>
+      <div class="two-col">
+        <dl class="facts">{% for fact in run.input_facts %}<dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd>{% endfor %}</dl>
+        <dl class="facts">{% for fact in run.processor_facts %}<dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd>{% endfor %}</dl>
+      </div>
+      {% if run.kind == "video" %}
+      <div class="callout"><p><strong>{{ run.sampling_summary }}</strong></p><p>Decoded presentation timestamps preserve the source timeline. Processor timestamps and grouped prompt labels may use frame index / FPS; they are separate observations.</p></div>
+      {% endif %}
+      {% if run.frames %}
+      <div class="section-head" style="margin-top:24px"><h3>{{ "Selected-frame timeline" if run.kind == "video" else "Input preview" }}</h3><span class="muted" style="font-size:12px">{{ "Original aspect ratios preserved" if include_media else "Thumbnails omitted from sanitized export" }}</span></div>
+      <div class="timeline">{% for frame in run.frames %}<figure class="frame"><div class="frame-media">{% if frame.thumbnail %}<img alt="{{ frame.alt }}" src="{{ frame.thumbnail }}" loading="lazy">{% else %}<span class="frame-placeholder">{{ "No thumbnail stored" if include_media else "Media omitted" }}</span>{% endif %}</div><figcaption><strong>{{ frame.label }}</strong>{% for line in frame.lines %}<div>{{ line }}</div>{% endfor %}</figcaption></figure>{% endfor %}</div>
+      {% endif %}
+      {% if run.padding_summary %}<p class="muted" style="font-size:12px;margin:16px 0 0">{{ run.padding_summary }}</p>{% endif %}
+    </section>
+    <section class="section">
+      <h2>Token accounting</h2>
+      <p class="muted">Encoder grid positions, visual placeholders, and complete prompt positions describe different stages. The residual includes chat-template, timestamp, and structural overhead; it is not a user-text token count.</p>
+      {% if run.visual_fraction is not none %}<div class="stack" role="img" aria-label="{{ run.visual_count }} visual placeholders within {{ run.prompt_count }} non-padding prompt positions"><div class="visual" style="width:{{ run.visual_fraction }}%"></div><div class="nonvisual" style="width:{{ 100 - run.visual_fraction }}%"></div></div><div class="legend"><span><i class="swatch"></i>Visual placeholder positions</span><span><i class="swatch nonvisual"></i>Nonvisual residual positions</span></div>{% endif %}
+      <div class="table-wrap"><table><thead><tr><th>Quantity / definition</th><th>Value</th><th>Evidence</th></tr></thead><tbody>{% for metric in run.token_metrics %}<tr><td><span class="metric-name">{{ metric.label }}</span><span class="metric-definition">{{ metric.method }}</span>{% if metric.reason %}<span class="metric-definition">{{ metric.reason }}</span>{% endif %}</td><td><span class="metric-value">{{ metric.value }}</span><span class="unit">{{ metric.unit }}</span></td><td><span class="evidence {{ metric.kind }}">{{ metric.kind }}</span></td></tr>{% endfor %}</tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Measured preparation and unavailable serving data</h2>
+      <p class="muted">Local preparation timings, when captured, measure CPU-side work. No serving request, model generation, GPU observation, or quality evaluation is part of this inspection.</p>
+      <div class="table-wrap"><table><thead><tr><th>Quantity / scope</th><th>Value</th><th>Evidence</th></tr></thead><tbody>{% for metric in run.runtime_metrics %}<tr><td><span class="metric-name">{{ metric.label }}</span><span class="metric-definition">{{ metric.reason if metric.reason else metric.method }}</span></td><td><span class="metric-value">{{ metric.value }}</span><span class="unit">{{ metric.unit }}</span></td><td><span class="evidence {{ metric.kind }}">{{ metric.kind }}</span></td></tr>{% endfor %}</tbody></table></div>
+    </section>
+    <section class="section">
+      <h2>Evidence, provenance, and limitations</h2>
+      <dl class="facts">{% for fact in run.provenance_facts %}<dt>{{ fact.label }}</dt><dd>{{ fact.value }}</dd>{% endfor %}</dl>
+      {% if run.warnings %}<div class="callout caution"><strong>Interpretation limits</strong><ul class="bullets">{% for warning in run.warnings %}<li>{{ warning }}</li>{% endfor %}</ul></div>{% endif %}
+      <details><summary>Effective settings and dependency versions</summary><pre>{{ run.settings_json }}</pre></details>
+      <details><summary>Frame manifest, grid, and accounting evidence</summary><pre>{{ run.evidence_json }}</pre></details>
+      <details><summary>Reproduce this inspection locally</summary><p style="margin-top:12px;font-size:13px">Use the exact model revision, dependency tuple, and effective settings above. Supply your local media path with the matching source SHA-256 and the original prompt matching its hash. Paths and raw prompt text are intentionally omitted. The recipient must have access to the processor artifacts or explicitly download the allowlisted artifacts first.</p><pre>{{ run.reproduction }}</pre></details>
+    </section>
+  </article>
+  {% endfor %}
+  <footer class="footer"><p class="privacy">{{ "Embedded thumbnails were explicitly requested. Review media before sharing." if include_media else "Sanitized export: no thumbnails, raw prompt text, or local source paths. Content hashes still allow records to be correlated." }}</p><p style="margin:8px 0 0">Generated from versioned ModalMeter result data. All styles are embedded; no external fonts, scripts, tracking, or network requests are required.</p></footer>
+</main>
+</body>
+</html>
