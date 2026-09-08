@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add the maintainer-supplied ModalMeter logo to the README.
 - Preserve the owner-supplied implementation contract and existing MIT license.
 - Establish product, architecture, measurement/data contracts, roadmap, contributor
   and agent instructions, testing/security/release guidance, and GitHub templates.

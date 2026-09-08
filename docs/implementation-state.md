@@ -113,6 +113,24 @@ to review M0 or start M1 after approval. PyPI name checks are a later publicatio
 
 ## Owner review and exact next action
 
+### Branding follow-up (M0 review still pending)
+
+The maintainer requested the supplied PNG as the project logo after foundation
+commit `142daa0`. Copy it unchanged to
+[docs/assets/modalmeter-logo.png](assets/modalmeter-logo.png) and display it at
+360 pixels wide in the README with alt text, preserving its aspect ratio.
+The source is the maintainer-provided `modalmeter-logo.png`; no image generation,
+redesign, or new authorship/license claim is involved.
+
+Validation: `file` identifies a 1254 × 1254 RGBA PNG (356,988 bytes).
+`shasum -a 256` matches the supplied source and repository copy:
+`b3426efb42d879f9ef936e6ffebc3b42cd342fef7d876fd590ab84fc5921691c`.
+The README image target exists and `git diff --check` passes for this follow-up.
+No runtime code/dependency changes; unit/type/package checks were not repeated
+for this documentation/asset change. The earlier M0 distribution evidence describes
+the foundation artifacts; those archives were not rebuilt for branding.
+M0 owner acceptance remains pending and M1 has not started. No push is authorized.
+
 Review the README's honest command surface, source-backed ADR, support matrix,
 evidence logs, data/measurement rules, and the preserved MIT license. M0 is ready
 for review, **not accepted**. No unrelated work was present at initial inspection;

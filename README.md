@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/modalmeter-logo.png" alt="ModalMeter logo" width="360">
+</p>
+
 # ModalMeter
 
 **Profile multimodal inference. Understand visual tokens, latency, and GPU memory.**
