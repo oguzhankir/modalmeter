@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 import pytest
+from click import unstyle
 from test_report import inspection, variant
 from typer.testing import CliRunner
 
@@ -15,13 +16,26 @@ from modalmeter.storage import load_result, write_inspection_run
 
 
 @pytest.mark.parametrize("args", [[], ["--help"]])
-def test_help_is_honest_and_successful(args: list[str]) -> None:
-    result = CliRunner().invoke(app, args)
+@pytest.mark.parametrize("color", [False, True], ids=["plain", "color"])
+def test_help_is_honest_and_successful(args: list[str], color: bool) -> None:
+    result = CliRunner().invoke(
+        app,
+        args,
+        env={
+            "FORCE_COLOR": "1" if color else None,
+            "NO_COLOR": None if color else "1",
+            "TERM": "xterm-256color" if color else "dumb",
+        },
+        color=color,
+    )
     assert result.exit_code == 0, result.output
-    assert "--version" in result.output
+    if color:
+        assert "\x1b[" in result.output
+    output = unstyle(result.output)
+    assert "--version" in output
     for command in ("prepare", "inspect", "report", "compare"):
-        assert command in result.output
-    assert "not implemented" not in result.output
+        assert command in output
+    assert "not implemented" not in output
 
 
 def test_version() -> None:

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Make help-content tests independent of terminal ANSI styling, with explicit
+  plain and forced-color cases covering the first hosted CI failure.
 - Implement CPU image/video inspection with the pinned Qwen3-VL processor, exact
   eight-file immutable artifact cache, offline mode, typed API and atomic CLI runs.
 - Record actual patch rows, visual placeholder IDs, attention-mask prompt length,

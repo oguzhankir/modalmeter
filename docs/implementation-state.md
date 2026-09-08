@@ -13,6 +13,15 @@ M1/M2 implementation. Code remains at the validated implementation commit
 `7101167`; this follow-up changes only continuation documentation. Review the PR
 and await the owner's next instruction. Milestone acceptance is unchanged.
 
+[PR #1](https://github.com/oguzhankir/modalmeter/pull/1) is open from
+`oguzhankir/cpu-inspection` to `main`. The first hosted CPU workflow ran and found
+two help-test assertions sensitive to ANSI styling in colored terminal output.
+The regression now checks both plain and forced-color help using Click's public
+`unstyle` helper; all visible-content assertions remain. Production code is
+unchanged. See the [PR follow-up evidence](evidence/pr-1/README.md) and current
+[GitHub checks](https://github.com/oguzhankir/modalmeter/pull/1/checks) for rerun
+outcomes. The implementation-handoff counts below predate the two added cases.
+
 **M1 and M2: ready_for_owner_review, not accepted.** The owner authorized this
 batch explicitly. At the implementation handoff, no push, publication, paid GPU,
 endpoint request, model weight download or global configuration change occurred.

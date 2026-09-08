@@ -11,7 +11,7 @@ acceptance or hosted CI evidence. [Roadmap](roadmap.md) tracks review status.
 | Qwen3-VL image inspection | macOS 26.6.2 / ARM64 / 3.12.11 | Exact tuple below; qwen3-vl-native/1 | processor_verified; independent image boundaries/IDs/mask/resize tests |
 | Qwen3-VL video inspection + PyAV | Same native 3.12 tuple | Exact tuple below; staged selection + native processing | processor_verified; independent default/uniform/odd/single/noninteger/VFR/repeated-PTS/resize cases |
 | Video source timestamp fidelity | Exact tuple above | Actual PTS separately from native ordinal/FPS labels | Distinction verified; native prompt labels do not reproduce VFR/nonzero source PTS |
-| Base CI | Linux 3.11/3.12, macOS 3.12 runner | Existing SHA-pinned workflow | Configured; hosted execution not run |
+| Base CI | Linux 3.11/3.12, macOS 3.12 runner | Existing SHA-pinned workflow | Hosted runs tracked on [PR #1](https://github.com/oguzhankir/modalmeter/pull/1/checks); first ANSI-sensitive help assertion fixed with plain/color regression cases |
 | Inspect extra on Linux, Python 3.11, other Mac releases | Candidate environments | Locked resolution only | Not executed; no automatic verified label |
 | vLLM image parity | No supplied endpoint | Engine/hardware/config unknown | server_parity_unverified |
 | vLLM video parity | No supplied endpoint | Engine/transport/config unknown | server_parity_unverified |
