@@ -5,9 +5,19 @@ Current local package: `0.1.0.dev0`. M0 is accepted by the owner's explicit requ
 to implement M1/M2; its original handoff is preserved in
 [evidence/m0/handoff.md](evidence/m0/handoff.md).
 
+PR follow-up, 2026-09-08: the owner explicitly requested a pull request to `main`
+and instructed us not to start M3. This authorizes pushing the current feature
+branch and opening the PR, without merging or publishing a package. The fetched
+`main` still predates M0, so the PR includes the foundation, supplied logo and
+M1/M2 implementation. Code remains at the validated implementation commit
+`7101167`; this follow-up changes only continuation documentation. Review the PR
+and await the owner's next instruction. Milestone acceptance is unchanged.
+
 **M1 and M2: ready_for_owner_review, not accepted.** The owner authorized this
-batch explicitly. M3 has not been started. No push, publication, paid GPU,
+batch explicitly. At the implementation handoff, no push, publication, paid GPU,
 endpoint request, model weight download or global configuration change occurred.
+M3 has not been started; the later PR authorization above supersedes the previous
+no-push boundary only for this feature branch and its PR to `main`.
 
 ## Implemented changes
 
